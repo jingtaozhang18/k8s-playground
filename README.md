@@ -5,7 +5,7 @@ Table Contents
 
 - [k8s-playground](#k8s-playground)
   - [Architecture](#architecture)
-  - [Install Steps](#install-steps)
+  - [Prepare the Host Environment](#prepare-the-host-environment)
     - [Install Ubuntu](#install-ubuntu)
     - [Install KVM and Docker](#install-kvm-and-docker)
     - [Install Minikube and Helm](#install-minikube-and-helm)
@@ -22,7 +22,7 @@ Show as below.
 
 ![](imgs/architecture.png)
 
-## Install Steps
+## Prepare the Host Environment
 
 ### Install Ubuntu
 
