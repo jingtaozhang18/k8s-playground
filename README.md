@@ -13,12 +13,12 @@ Show as below.
 
 Install Ubuntu22 in HP Z440 Workstation and install common command.
 
-Ubuntu ISO:
+Ubuntu iso:
   
-  * [download page](https://ubuntu.com/download/desktop)
-  * [download link](https://ubuntu.osuosl.org/releases/22.04.1/ubuntu-22.04.1-desktop-amd64.iso)
+  * [Download Page](https://ubuntu.com/download/desktop)
+  * [Download Link](https://ubuntu.osuosl.org/releases/22.04.1/ubuntu-22.04.1-desktop-amd64.iso)
 
-Install Common Command:
+Install common command:
 
 ```bash
 sudo apt update
@@ -31,7 +31,7 @@ sudo apt install -y \
 
 ### Install KVM
 
-Install KVM through apt command
+Install KVM through apt command.
 
 ```bash
 sudo apt -y install \
@@ -43,7 +43,7 @@ sudo apt -y install \
   qemu-kvm
 ```
 
-Refer Page: [KVM hypervisor: a beginners’ guide](https://ubuntu.com/blog/kvm-hyphervisor)
+Refer page: [KVM Hypervisor: a Beginners’ Guide](https://ubuntu.com/blog/kvm-hyphervisor)
 
 ### Install Minikube and Helm
 
@@ -66,6 +66,6 @@ chmod 700 ./get_helm.sh
 rm ./get_helm.sh
 ```
 
-Minikube Install Page: [Minikube Start](https://minikube.sigs.k8s.io/docs/start/)
-Helm Install Page: [Installing Helm](https://helm.sh/docs/intro/install/)
+Minikube install page: [Minikube Start](https://minikube.sigs.k8s.io/docs/start/)
+Helm install page: [Installing Helm](https://helm.sh/docs/intro/install/)
 
