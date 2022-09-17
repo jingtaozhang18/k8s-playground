@@ -69,7 +69,6 @@ rm ./get_helm.sh
 ```
 
 Refer:
-
   * [Minikube Start](https://minikube.sigs.k8s.io/docs/start/)
   * [Installing Helm](https://helm.sh/docs/intro/install/)
 
