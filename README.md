@@ -195,6 +195,10 @@ NFS_STORAGE_NAMESPACE="storage-nfs"
 helm upgrade --install nfs-subdir-external-provisioner            \
   --kube-context ${CONTEXT_NAME}                                  \
   --namespace ${NFS_STORAGE_NAMESPACE}                            \
-  --values configs/charts_values/nfs-values.yaml     \
+  --values configs/charts_values/nfs-values.yaml                  \
   nfs-subdir-external-provisioner/nfs-subdir-external-provisioner
 ```
+
+Refer:
+  * [Kubernetes NFS Subdir External Provisioner](https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner)
+
