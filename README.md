@@ -7,7 +7,12 @@ Show as below.
 
 ![](imgs/architecture.png)
 
-## Install Step
+## Install Steps
+
+* Install Ubuntu
+* Install KVM and Docker
+* Install Minikube and Helm
+* Config Network Environment
 
 ### Install Ubuntu
 
@@ -29,7 +34,7 @@ Refer:
   * [Ubuntu Desktop Download Page](https://ubuntu.com/download/desktop)
   * [Ubuntu22.04 ISO Download Link](https://ubuntu.osuosl.org/releases/22.04.1/ubuntu-22.04.1-desktop-amd64.iso)
 
-### Install KVM
+### Install KVM and Docker
 
 Install KVM through apt command.
 
@@ -43,9 +48,31 @@ sudo apt -y install \
   qemu-kvm
 ```
 
+Install Docker through apt command. It is recommended to install according to the latest official website introduction.
+
+```bash
+sudo apt-get update
+sudo apt-get -y install \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+sudo apt-get -y install \
+  docker-ce docker-ce-cli \
+  containerd.io \
+  docker-compose-plugin
+```
+
 Refer:
 
   * [KVM Hypervisor: a Beginners’ Guide](https://ubuntu.com/blog/kvm-hyphervisor)
+  * [Install Docker Engine on Ubuntu](https://docs.docker.com/engine/install/ubuntu/)
 
 ### Install Minikube and Helm
 
@@ -69,6 +96,29 @@ rm ./get_helm.sh
 ```
 
 Refer:
+
   * [Minikube Start](https://minikube.sigs.k8s.io/docs/start/)
   * [Installing Helm](https://helm.sh/docs/intro/install/)
 
+### Config Network Environment
+
+You need to config network environment, includes create virtual bridge and virtual
+
+Create bridge by netplan command. Pls check [network config file](configs/network/01-network-manager-all.yaml) first, and the default config will use a static ip which may not be right for you.
+
+```bash
+mv /etc/netplan/01-network-manager-all.yaml /etc/netplan/01-network-manager-all.yaml.backup
+mv configs/network/01-network-manager-all.yaml /etc/netplan/01-network-manager-all.yaml
+sudo netplan apply
+```
+
+Create KVM virtual network.
+
+```bash
+sudo virsh net-define configs/network/kvm-bridged-network.xml
+sudo virsh net-start bridged-network
+sudo virsh net-autostart bridged-network
+sudo virsh net-list
+```
+
+## Start K8s Cluster

@@ -1,5 +1,11 @@
 {
   "cSpell.words": [
-    "iftop"
+    "containerd",
+    "dearmor",
+    "dpkg",
+    "iftop",
+    "keyrings",
+    "netplan",
+    "virsh"
   ]
 }
