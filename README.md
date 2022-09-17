@@ -10,7 +10,11 @@ Table Contents
     - [Install KVM and Docker](#install-kvm-and-docker)
     - [Install Minikube and Helm](#install-minikube-and-helm)
     - [Config Network Environment](#config-network-environment)
-  - [Start K8s Cluster](#start-k8s-cluster)
+  - [Create K8S Cluster](#create-k8s-cluster)
+    - [Create Infra Standalone Services](#create-infra-standalone-services)
+      - [Create NFS Server](#create-nfs-server)
+    - [Start K8S Cluster](#start-k8s-cluster)
+  - [Install Infra Service in K8S](#install-infra-service-in-k8s)
 
 ## Architecture
 
@@ -108,9 +112,9 @@ Refer:
 
 ### Config Network Environment
 
-You need to config network environment, includes create virtual bridge and virtual
+Config network environment, includes creating virtual bridge and kvm virtual network. They will be `bridge br0` as shown in the architecture diagram.
 
-Create bridge by netplan command. Pls check [network config file](configs/network/01-network-manager-all.yaml) first, and the default config will use a static ip which may not be right for you.
+Create virtual bridge by netplan command. Pls check [network config file](configs/network/01-network-manager-all.yaml) first, and the default config will use a static ip which may not be right for you.
 
 ```bash
 mv /etc/netplan/01-network-manager-all.yaml /etc/netplan/01-network-manager-all.yaml.backup
@@ -127,4 +131,33 @@ sudo virsh net-autostart bridged-network
 sudo virsh net-list
 ```
 
-## Start K8s Cluster
+## Create K8S Cluster
+
+### Create Infra Standalone Services
+
+It is need to create some infra to support k8s running well because this is a multi-nodes cluster.
+
+#### Create NFS Server
+
+Create NFS server through [bash script](scripts/infra_nfs_service_enable.sh), before running it, pls check `NFS_DOMAIN` variable which indicates the subnet that can access the NFS service.
+
+### Start K8S Cluster
+
+Now, It is all ready for starting k8s cluster! Start it through below command.
+
+```bash
+PROFILE_NAME="playground"
+minikube \
+  --driver=kvm2 \
+  --addons metrics-server,registry \
+  --kubernetes-version v1.24.3 \
+  --profile ${PROFILE_NAME} \
+  --cpus 5 \
+  --memory 12g \
+  --disk-size 40g \
+  --kvm-network='bridged-network' \
+  --nodes 4 \
+  start
+```
+
+## Install Infra Service in K8S
