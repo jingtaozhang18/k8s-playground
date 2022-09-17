@@ -1,0 +1,21 @@
+architecture: replication
+
+primary:
+  persistence:
+    storageClass: nfs-client
+
+secondary:
+  replicaCount: 2
+  persistence:
+    storageClass: nfs-client
+
+metrics:
+  enabled: true  # Start a side-car prometheus exporter
+  serviceMonitor:
+    enabled: true  # Create ServiceMonitor Resource for scraping metrics using PrometheusOperator
+    namespace: infra
+    honorLabels: true
+    interval: 5s
+  prometheusRule:
+    enabled: true
+    namespace: infra
