@@ -1,6 +1,17 @@
 # k8s-playground
 For building a multi-nodes k8s environment with infra services.
 
+Table Contents
+
+- [k8s-playground](#k8s-playground)
+  - [Architecture](#architecture)
+  - [Install Steps](#install-steps)
+    - [Install Ubuntu](#install-ubuntu)
+    - [Install KVM and Docker](#install-kvm-and-docker)
+    - [Install Minikube and Helm](#install-minikube-and-helm)
+    - [Config Network Environment](#config-network-environment)
+  - [Start K8s Cluster](#start-k8s-cluster)
+
 ## Architecture
 
 Show as below.
@@ -8,11 +19,6 @@ Show as below.
 ![](imgs/architecture.png)
 
 ## Install Steps
-
-* [Install Ubuntu](#install-ubuntu)
-* Install KVM and Docker
-* Install Minikube and Helm
-* Config Network Environment
 
 ### Install Ubuntu
 
