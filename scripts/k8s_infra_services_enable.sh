@@ -22,15 +22,15 @@ helm upgrade --install nfs-subdir-external-provisioner              \
   --values ${WORKING_DIR}/configs/charts_values/nfs-values.yaml     \
   nfs-subdir-external-provisioner/nfs-subdir-external-provisioner
 
-helm upgrade --install bitnami-mysql                                \
-  --namespace ${INFRA_NAMESPACE}                                    \
-  --values ${WORKING_DIR}/configs/charts_values/mysql-values.yaml   \
-  bitnami/mysql
-
 helm upgrade --install bitnami-kube-prometheus                                \
   --namespace ${INFRA_NAMESPACE}                                              \
   --values ${WORKING_DIR}/configs/charts_values/kube-prometheus-values.yaml   \
   bitnami/kube-prometheus
+
+helm upgrade --install bitnami-mysql                                \
+  --namespace ${INFRA_NAMESPACE}                                    \
+  --values ${WORKING_DIR}/configs/charts_values/mysql-values.yaml   \
+  bitnami/mysql
 
 helm upgrade --install bitnami-grafana-operator                               \
   --namespace ${INFRA_NAMESPACE}                                              \
