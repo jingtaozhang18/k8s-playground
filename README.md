@@ -1,5 +1,5 @@
 # k8s-playground
-For building a multi-nodes k8s environment with infra services.
+For building a multi-nodes k8s cluster environment with infra services.
 
 Table Contents
 
@@ -18,7 +18,7 @@ Table Contents
 
 ## Architecture
 
-Show as below.
+The overall structure is shown in the figure below
 
 ![](imgs/architecture.png)
 
