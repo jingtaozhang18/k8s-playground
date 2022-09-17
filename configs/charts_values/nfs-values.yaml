@@ -1,0 +1,13 @@
+nfs:
+  server: "192.168.1.90"
+  path: "/k8s-playground"
+  mountOptions: 
+    - "nfsvers=4"
+    - "port=2049"
+
+storageClass:
+  name: nfs-client
+  archiveOnDelete: true # Archive PVC when deleting
+  onDelete: retain  # Strategy on PVC deletion. Overrides archiveOnDelete when set to lowercase values 'delete' or 'retain'
+
+replicaCount: 2
