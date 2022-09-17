@@ -15,6 +15,7 @@ Table Contents
       - [Create NFS Server](#create-nfs-server)
     - [Start K8S Cluster](#start-k8s-cluster)
   - [Install Infra Service in K8S](#install-infra-service-in-k8s)
+    - [Install `nfs-client` Storage Class](#install-nfs-client-storage-class)
 
 ## Architecture
 
@@ -160,4 +161,40 @@ minikube \
   start
 ```
 
+To get nodes:
+
+```bash
+PROFILE_NAME="playground"
+minikube kubectl --profile ${PROFILE_NAME} -- get pods -A
+```
+
+To access dashboard:
+
+```bash
+PROFILE_NAME="playground"
+minikube dashboard --profile ${PROFILE_NAME} --url
+```
+
+Refer to [multi-nodes-minikube_env_start.sh](scripts/multi-nodes-minikube_env_start.sh).
+
 ## Install Infra Service in K8S
+
+Refer to [k8s_infra_services_enable.sh](scripts/k8s_infra_services_enable.sh) for all deploy code.
+
+### Install `nfs-client` Storage Class
+
+Because this is a multi-nodes k8s, so the default storage class which using a certain host path can't satisfy the need. And the `nfs-client` storage class can mount a nfs path which can be accessed by any node.
+
+Deploy it using below command.
+
+```bash
+helm repo add nfs-subdir-external-provisioner https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner
+helm repo update
+CONTEXT_NAME="playground"
+NFS_STORAGE_NAMESPACE="storage-nfs"
+helm upgrade --install nfs-subdir-external-provisioner            \
+  --kube-context ${CONTEXT_NAME}                                  \
+  --namespace ${NFS_STORAGE_NAMESPACE}                            \
+  --values configs/charts_values/nfs-values.yaml     \
+  nfs-subdir-external-provisioner/nfs-subdir-external-provisioner
+```
