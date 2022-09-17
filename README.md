@@ -9,7 +9,7 @@ Show as below.
 
 ## Install Steps
 
-* Install Ubuntu
+* [Install Ubuntu](#install-ubuntu)
 * Install KVM and Docker
 * Install Minikube and Helm
 * Config Network Environment
