@@ -18,14 +18,6 @@ fi
 
 minikube version
 
-# check helm
-HELM_INSTALLED="y"
-which helm >/dev/null 2>&1 || { HELM_INSTALLED="n"; }
-
-if [[ ${HELM_INSTALLED} == "n" ]]; then
-  echo "pls install helm first"
-fi
-
 # using transparent proxy instead http/https proxy
 # start minikube
 PROFILE_NAME="playground"

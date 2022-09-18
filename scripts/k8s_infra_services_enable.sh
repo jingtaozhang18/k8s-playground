@@ -7,6 +7,15 @@ WORKING_DIR=$(
   pwd
 )
 WORKING_DIR="${WORKING_DIR}/.."
+
+# check helm
+HELM_INSTALLED="y"
+which helm >/dev/null 2>&1 || { HELM_INSTALLED="n"; }
+
+if [[ ${HELM_INSTALLED} == "n" ]]; then
+  echo "pls install helm first"
+fi
+
 CONTEXT_NAME="playground"
 NFS_STORAGE_NAMESPACE="storage-nfs"
 INFRA_NAMESPACE="infra"
