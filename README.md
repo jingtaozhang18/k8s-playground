@@ -202,7 +202,7 @@ Deploy it using below command.
 helm repo add nfs-subdir-external-provisioner https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner
 helm repo update
 PROFILE_NAME="playground"
-CONTEXT_NAME=PROFILE_NAME
+CONTEXT_NAME=${PROFILE_NAME}
 NFS_STORAGE_NAMESPACE="storage-nfs"
 # get host ip
 BR0_IP=$(ip addr show br0 | grep inet | grep -v 127.0.0.1 | grep -v inet6 | awk '{print $2}' | tr -d "addr:")
