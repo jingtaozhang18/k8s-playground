@@ -126,10 +126,10 @@ sudo netplan apply
 Create KVM virtual network.
 
 ```bash
-sudo virsh net-define configs/network/kvm-bridged-network.xml
-sudo virsh net-start bridged-network
-sudo virsh net-autostart bridged-network
-sudo virsh net-list
+virsh net-define configs/network/kvm-bridged-network.xml
+virsh net-start bridged-network
+virsh net-autostart bridged-network
+virsh net-list
 ```
 
 ## Create K8S Cluster
