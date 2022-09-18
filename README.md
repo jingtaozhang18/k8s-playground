@@ -195,10 +195,15 @@ helm repo add nfs-subdir-external-provisioner https://kubernetes-sigs.github.io/
 helm repo update
 CONTEXT_NAME="playground"
 NFS_STORAGE_NAMESPACE="storage-nfs"
+# get host ip
+BR0_IP=$(ip addr show br0 |grep inet |grep -v 127.0.0.1 |grep -v inet6 |awk '{print $2}' |tr -d "addr:")
+BR0_IP=$(echo ${BR0_IP//\// } |awk '{print $1}')
+echo "your host ip: ${BR0_IP}"
 helm upgrade --install nfs-subdir-external-provisioner            \
   --kube-context ${CONTEXT_NAME}                                  \
   --namespace ${NFS_STORAGE_NAMESPACE}                            \
   --values configs/charts_values/nfs-values.yaml                  \
+  --set nfs.server=${BR0_IP}                                      \
   nfs-subdir-external-provisioner/nfs-subdir-external-provisioner
 ```
 
