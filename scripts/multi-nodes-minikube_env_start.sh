@@ -27,15 +27,18 @@ fi
 PROFILE_NAME="playground"
 
 minikube \
+  --profile ${PROFILE_NAME} \
   --driver=kvm2 \
   --addons metrics-server,registry \
   --kubernetes-version v1.24.3 \
-  --profile ${PROFILE_NAME} \
-  --cpus 5 \
+  --auto-update-drivers=false \
+  --nodes 4 \
+  --cpus 6 \
   --memory 12g \
   --disk-size 40g \
   --kvm-network='bridged-network' \
-  --nodes 4 \
+  --image-mirror-country='cn' \
+  --image-repository='auto' \
   start
 
 minikube kubectl --profile ${PROFILE_NAME} -- get pods -A

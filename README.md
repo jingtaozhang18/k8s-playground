@@ -149,15 +149,18 @@ Now, It is all ready for starting k8s cluster! Start it through below command.
 ```bash
 PROFILE_NAME="playground"
 minikube \
+  --profile ${PROFILE_NAME} \
   --driver=kvm2 \
   --addons metrics-server,registry \
   --kubernetes-version v1.24.3 \
-  --profile ${PROFILE_NAME} \
-  --cpus 5 \
+  --auto-update-drivers=false \
+  --nodes 4 \
+  --cpus 6 \
   --memory 12g \
   --disk-size 40g \
   --kvm-network='bridged-network' \
-  --nodes 4 \
+  --image-mirror-country='cn' \
+  --image-repository='auto' \
   start
 ```
 
