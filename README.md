@@ -19,7 +19,7 @@ Table Contents
 
 ## Architecture
 
-The overall structure is shown in the figure below
+The overall structure is shown in the figure below.
 
 ![](imgs/architecture.png)
 
@@ -27,9 +27,9 @@ The overall structure is shown in the figure below
 
 ### Install Ubuntu
 
-Install Ubuntu22 in HP Z440 Workstation and install common command.
+Install Ubuntu22 on HP Z440 Workstation and install common command.
 
-Install common command through apt.
+Install common commands through apt.
 
 ```bash
 sudo apt update
@@ -93,7 +93,7 @@ Refer:
 
 ### Install Minikube and Helm
 
-This repo used special version of minikube and helm.
+This repo uses a special version of minikube and helm.
 
 Install Minikube:
 
@@ -126,7 +126,7 @@ Create virtual bridge by netplan command. Pls check [network config file](config
 ```bash
 mv /etc/netplan/01-network-manager-all.yaml /etc/netplan/01-network-manager-all.yaml.backup
 cp configs/network/01-network-manager-all.yaml /etc/netplan/01-network-manager-all.yaml
-sudo netplan apply
+netplan apply
 ```
 
 Create KVM virtual network.
