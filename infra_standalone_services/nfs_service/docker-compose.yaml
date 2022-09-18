@@ -8,8 +8,8 @@ services:
     ports:
       - "2049:2049"
     environment:
-      - NFS_DOMAIN=${NFS_DOMAIN}
+      - NFS_DOMAIN=${NFS_DOMAIN:-192.168.0.0/16}
       - NFS_OPTION=fsid=0,rw,sync,insecure,no_subtree_check,nohide,no_root_squash
     volumes:
-      - ${WORKING_DIR}/nfs_mount_point/k8s-playground:/nfs-share
+      - ${WORKING_DIR:-../../}/nfs_mount_point:/nfs-share
     restart: always
