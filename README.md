@@ -119,7 +119,7 @@ Create virtual bridge by netplan command. Pls check [network config file](config
 
 ```bash
 mv /etc/netplan/01-network-manager-all.yaml /etc/netplan/01-network-manager-all.yaml.backup
-mv configs/network/01-network-manager-all.yaml /etc/netplan/01-network-manager-all.yaml
+cp configs/network/01-network-manager-all.yaml /etc/netplan/01-network-manager-all.yaml
 sudo netplan apply
 ```
 
