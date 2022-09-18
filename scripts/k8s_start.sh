@@ -18,7 +18,6 @@ fi
 
 minikube version
 
-
 # check helm
 HELM_INSTALLED="y"
 which helm >/dev/null 2>&1 || { HELM_INSTALLED="n"; }
@@ -27,19 +26,19 @@ if [[ ${HELM_INSTALLED} == "n" ]]; then
   echo "pls install helm first"
 fi
 
-
 # using transparent proxy instead http/https proxy
 # start minikube
 PROFILE_NAME="playground"
 SOFT_ROUTE_IP="192.168.1.41"
-bash ${WORKING_DIR}/scripts/k8s_set_route.sh ${PROFILE_NAME} ${SOFT_ROUTE_IP} &
+NODE_NUM=4
+bash ${WORKING_DIR}/scripts/k8s_set_route.sh ${PROFILE_NAME} ${NODE_NUM} ${SOFT_ROUTE_IP} &
 minikube \
   --profile ${PROFILE_NAME} \
   --driver=kvm2 \
   --addons metrics-server,registry \
   --kubernetes-version v1.24.3 \
   --auto-update-drivers=false \
-  --nodes 4 \
+  --nodes ${NODE_NUM} \
   --cpus 6 \
   --memory 12g \
   --disk-size 40g \
