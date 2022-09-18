@@ -14,6 +14,7 @@ which minikube >/dev/null 2>&1 || { MINIKUBE_INSTALLED="n"; }
 
 if [[ ${MINIKUBE_INSTALLED} == "n" ]]; then
   echo "pls install minikube first"
+  exit 1
 fi
 
 minikube version

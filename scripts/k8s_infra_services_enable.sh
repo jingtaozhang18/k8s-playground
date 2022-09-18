@@ -14,6 +14,7 @@ which helm >/dev/null 2>&1 || { HELM_INSTALLED="n"; }
 
 if [[ ${HELM_INSTALLED} == "n" ]]; then
   echo "pls install helm first"
+  exit 1
 fi
 
 CONTEXT_NAME="playground"
