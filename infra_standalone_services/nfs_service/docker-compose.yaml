@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  nfs-server:
+    image: gists/nfs-server
+    container_name: nfs-server
+    privileged: true
+    ports:
+      - "2049:2049"
+    environment:
+      - NFS_DOMAIN=${NFS_DOMAIN}
+      - NFS_OPTION=fsid=0,rw,sync,insecure,no_subtree_check,nohide,no_root_squash
+    volumes:
+      - ${WORKING_DIR}/services_k8s/vm_mount:/nfs-share
+    restart: always
