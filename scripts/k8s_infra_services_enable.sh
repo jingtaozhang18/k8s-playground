@@ -36,3 +36,23 @@ helm upgrade --install nfs-subdir-external-provisioner \
   --values configs/charts_values/nfs-values.yaml \
   --set nfs.server=${BR0_IP} \
   nfs-subdir-external-provisioner/nfs-subdir-external-provisioner
+
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm repo update
+
+minikube kubectl --profile ${PROFILE_NAME} -- create namespace ${INFRA_NAMESPACE} --dry-run=client -o yaml | minikube kubectl --profile ${PROFILE_NAME} -- apply -f -
+
+helm upgrade --install bitnami-kube-prometheus \
+  --namespace ${INFRA_NAMESPACE} \
+  --values ${WORKING_DIR}/configs/charts_values/kube-prometheus-values.yaml \
+  bitnami/kube-prometheus
+
+helm upgrade --install bitnami-mysql \
+  --namespace ${INFRA_NAMESPACE} \
+  --values ${WORKING_DIR}/configs/charts_values/mysql-values.yaml \
+  bitnami/mysql
+
+helm upgrade --install bitnami-grafana-operator \
+  --namespace ${INFRA_NAMESPACE} \
+  --values ${WORKING_DIR}/configs/charts_values/grafana-operator-values.yaml \
+  bitnami/grafana-operator

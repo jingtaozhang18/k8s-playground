@@ -1,0 +1,12 @@
+prometheus:
+  persistence:
+    enabled: true
+    storageClass: nfs-client
+
+  thanos:
+    create: true
+
+alertmanager:
+  persistence:
+    enabled: true
+    storageClass: nfs-client
