@@ -11,5 +11,5 @@ services:
       - NFS_DOMAIN=${NFS_DOMAIN}
       - NFS_OPTION=fsid=0,rw,sync,insecure,no_subtree_check,nohide,no_root_squash
     volumes:
-      - ${WORKING_DIR}/services_k8s/vm_mount:/nfs-share
+      - ${WORKING_DIR}/nfs_mount_point/k8s-playground:/nfs-share
     restart: always
