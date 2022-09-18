@@ -8,6 +8,9 @@ node_names="
   ${PROFILE_NAME}-m03
   ${PROFILE_NAME}-m04
 "
+
+sleep 10  # waitting for k8s start creating.
+
 for node_name in ${node_names[@]}; do
   echo "current node name is ${node_name}"
 
@@ -17,6 +20,11 @@ for node_name in ${node_names[@]}; do
     not_running=$?
     echo "waitting for ${PROFILE_NAME} 's ${node_name} running."
     sleep 5
+    minikube --profile ${PROFILE_NAME} node list >/dev/null 2>&1
+    if [ $? != 0 ]; then
+      echo "${PROFILE_NAME} not exists."
+      exit 1
+    fi
   done
   
   origin_ip=$(minikube --profile ${PROFILE_NAME} \
@@ -29,5 +37,6 @@ for node_name in ${node_names[@]}; do
 
   minikube --profile ${PROFILE_NAME} ssh -n ${node_name} \
     "sudo ip route add default via ${SOFT_ROUTE_IP} dev eth1 proto dhcp src ${origin_ip} metric 1024"
+  
   echo "set ${PROFILE_NAME} 's ${node_name} route done."
 done
