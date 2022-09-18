@@ -145,9 +145,12 @@ Create NFS server through [bash script](scripts/infra_nfs_service_enable.sh), be
 ### Start K8S Cluster
 
 Now, It is all ready for starting k8s cluster! Start it through below command.
+For setting route for k8s cluster, run `scripts/k8s_set_route.sh` script which will set route when node is ready.
 
 ```bash
 PROFILE_NAME="playground"
+SOFT_ROUTE_IP="192.168.1.41"
+bash ${WORKING_DIR}/scripts/k8s_set_route.sh ${PROFILE_NAME} ${SOFT_ROUTE_IP} &
 minikube \
   --profile ${PROFILE_NAME} \
   --driver=kvm2 \
@@ -159,8 +162,6 @@ minikube \
   --memory 12g \
   --disk-size 40g \
   --kvm-network='bridged-network' \
-  --image-mirror-country='cn' \
-  --image-repository='auto' \
   start
 ```
 
@@ -178,7 +179,7 @@ PROFILE_NAME="playground"
 minikube dashboard --profile ${PROFILE_NAME} --url
 ```
 
-Refer to [multi-nodes-minikube_env_start.sh](scripts/multi-nodes-minikube_env_start.sh).
+Refer to [k8s_start.sh](scripts/k8s_start.sh).
 
 ## Install Infra Service in K8S
 
