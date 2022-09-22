@@ -5,7 +5,7 @@ configsvr:
   replicaCount: 3
   persistence:
     enabled: true
-  storageClass: nfs-client
+    storageClass: nfs-client
 
 mongos:
   replicaCount: 3
