@@ -5,6 +5,9 @@ nfs:
     - "nfsvers=4"
     - "port=2049"
 
+image:
+  repository: k8s.gcr.io.registry.jingtao.fun/sig-storage/nfs-subdir-external-provisioner
+
 storageClass:
   name: nfs-client
   archiveOnDelete: true # Archive PVC when deleting

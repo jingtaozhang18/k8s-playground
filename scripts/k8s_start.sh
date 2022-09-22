@@ -28,7 +28,7 @@ bash ${WORKING_DIR}/scripts/k8s_set_route.sh ${PROFILE_NAME} ${NODE_NUM} ${SOFT_
 minikube \
   --profile ${PROFILE_NAME} \
   --driver=kvm2 \
-  --addons metrics-server,registry \
+  --addons registry \
   --kubernetes-version v1.24.3 \
   --auto-update-drivers=false \
   --nodes ${NODE_NUM} \

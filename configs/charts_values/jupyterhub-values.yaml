@@ -1,7 +1,12 @@
 global:
   imageRegistry: docker.io.registry.jingtao.fun
-
-grafana:
+  
+singleuser:
   persistence:
-    enabled: true
     storageClass: nfs-client
+
+hub:
+  password: jupyter
+
+postgresql:
+  enabled: false

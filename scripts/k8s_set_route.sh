@@ -16,12 +16,11 @@ done
 
 echo "node names: ${node_names}"
 
-sleep 10 # waitting for k8s start creating.
-
 for node_name in ${node_names[@]}; do
   echo "current node name is ${node_name}"
 
-  not_running=1
+  minikube --profile ${PROFILE_NAME} ssh -n ${node_name} ls >/dev/null 2>&1
+  not_running=$?
   while [ ${not_running} != "0" ]; do
     minikube --profile ${PROFILE_NAME} ssh -n ${node_name} ls >/dev/null 2>&1
     not_running=$?

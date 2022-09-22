@@ -1,3 +1,5 @@
+global:
+  imageRegistry: docker.io.registry.jingtao.fun
 prometheus:
   persistence:
     enabled: true

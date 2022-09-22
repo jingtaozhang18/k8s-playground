@@ -1,0 +1,9 @@
+global:
+  storageClass: nfs-client
+  imageRegistry: docker.io.registry.jingtao.fun
+
+metrics:
+  enabled: true
+
+worker:
+  replicaCount: 3

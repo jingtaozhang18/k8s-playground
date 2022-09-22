@@ -1,0 +1,30 @@
+global:
+  imageRegistry: docker.io.registry.jingtao.fun
+  storageClass: nfs-client
+
+persistence:
+  enabled: true
+  storageClass: nfs-client
+
+auth:
+  clientProtocol: plaintext
+  interBrokerProtocol: plaintext
+
+replicaCount: 3
+
+metrics:
+  kafka:
+    enabled: true
+
+provisioning:
+  enabled: true
+  numPartitions: 2
+
+zookeeper:
+  enabled: true
+  replicaCount: 3
+  auth:
+    client:
+      enabled: false
+  persistence:
+    storageClass: nfs-client

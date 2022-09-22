@@ -1,7 +1,10 @@
 architecture: replication
 
-image:
-  tag: 5.7.39-debian-11-r20
+global:
+  imageRegistry: docker.io.registry.jingtao.fun
+
+# image:
+#   tag: 5.7.39-debian-11-r20
 
 primary:
   persistence:
