@@ -28,7 +28,7 @@ bash ${WORKING_DIR}/scripts/k8s_set_route.sh ${PROFILE_NAME} ${NODE_NUM} ${SOFT_
 minikube \
   --profile ${PROFILE_NAME} \
   --driver=kvm2 \
-  --addons registry \
+  --install-addons=false \
   --kubernetes-version v1.24.3 \
   --auto-update-drivers=false \
   --nodes ${NODE_NUM} \
@@ -37,6 +37,9 @@ minikube \
   --disk-size 40g \
   --kvm-network='bridged-network' \
   start
+
+minikube --profile ${PROFILE_NAME} addons disable storage-provisioner
+minikube --profile ${PROFILE_NAME} addons disable default-storageclass
 
 minikube kubectl --profile ${PROFILE_NAME} -- get pods -A
 

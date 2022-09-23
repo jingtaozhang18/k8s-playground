@@ -1,5 +1,5 @@
 global:
-  storageClass: nfs-client
+  storageClass: standard
   imageRegistry: docker.io.registry.jingtao.fun
 
 metrics:

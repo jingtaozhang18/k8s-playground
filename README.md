@@ -15,7 +15,7 @@ Table Contents
       - [Create NFS Server](#create-nfs-server)
     - [Start K8S Cluster](#start-k8s-cluster)
   - [Install Infra Service in K8S](#install-infra-service-in-k8s)
-    - [Install `nfs-client` Storage Class](#install-nfs-client-storage-class)
+    - [Install `standard` Storage Class](#install-standard-storage-class)
 
 ## Architecture
 
@@ -192,9 +192,9 @@ Refer to [k8s_start.sh](scripts/k8s_start.sh).
 
 Refer to [k8s_infra_services_enable.sh](scripts/k8s_infra_services_enable.sh) for all deploy code.
 
-### Install `nfs-client` Storage Class
+### Install `standard` Storage Class
 
-Because this is a multi-nodes k8s, so the default storage class which using a certain host path can't satisfy the need. And the `nfs-client` storage class can mount a nfs path which can be accessed by any node.
+Because this is a multi-nodes k8s, so the default storage class which using a certain host path can't satisfy the need. And the `standard` storage class can mount a nfs path which can be accessed by any node.
 
 Deploy it using below command.
 

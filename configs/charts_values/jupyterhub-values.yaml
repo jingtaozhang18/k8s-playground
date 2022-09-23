@@ -3,7 +3,7 @@ global:
   
 singleuser:
   persistence:
-    storageClass: nfs-client
+    storageClass: standard
 
 hub:
   password: jupyter

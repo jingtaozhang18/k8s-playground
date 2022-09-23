@@ -8,12 +8,15 @@ global:
 
 primary:
   persistence:
-    storageClass: nfs-client
+    storageClass: standard
 
 secondary:
   replicaCount: 2
   persistence:
-    storageClass: nfs-client
+    enabled: true
+    storageClass: standard
+  startupProbe:
+    initialDelaySeconds: 30
 
 metrics:
   enabled: true  # Start a side-car prometheus exporter

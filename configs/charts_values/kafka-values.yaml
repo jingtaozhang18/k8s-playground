@@ -1,10 +1,10 @@
 global:
   imageRegistry: docker.io.registry.jingtao.fun
-  storageClass: nfs-client
+  storageClass: standard
 
 persistence:
   enabled: true
-  storageClass: nfs-client
+  storageClass: standard
 
 auth:
   clientProtocol: plaintext
@@ -27,4 +27,4 @@ zookeeper:
     client:
       enabled: false
   persistence:
-    storageClass: nfs-client
+    storageClass: standard

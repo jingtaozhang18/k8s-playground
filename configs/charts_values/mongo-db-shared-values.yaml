@@ -1,18 +1,19 @@
 global:
   imageRegistry: docker.io.registry.jingtao.fun
+  storageClass: standard
 
 configsvr:
   replicaCount: 3
   persistence:
     enabled: true
-    storageClass: nfs-client
+    storageClass: standard
 
 mongos:
   replicaCount: 3
 
 shardsvr:
   persistence:
-    storageClass: nfs-client
+    storageClass: standard
   dataNode:
     replicaCount: 3
 

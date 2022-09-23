@@ -3,7 +3,7 @@ global:
 prometheus:
   persistence:
     enabled: true
-    storageClass: nfs-client
+    storageClass: standard
 
   thanos:
     create: true
@@ -11,4 +11,4 @@ prometheus:
 alertmanager:
   persistence:
     enabled: true
-    storageClass: nfs-client
+    storageClass: standard

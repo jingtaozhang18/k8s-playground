@@ -4,4 +4,4 @@ global:
 grafana:
   persistence:
     enabled: true
-    storageClass: nfs-client
+    storageClass: standard
