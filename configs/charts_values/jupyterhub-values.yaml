@@ -1,5 +1,6 @@
 global:
   imageRegistry: docker.io.registry.jingtao.fun
+  storageClass: standard
   
 singleuser:
   persistence:
@@ -9,4 +10,10 @@ hub:
   password: jupyter
 
 postgresql:
-  enabled: false
+  enabled: true
+
+externalDatabase:
+  host: bitnami-postgresql-primary.infra.svc.cluster.local
+  user: jupytertest
+  password: nopasswd
+  database: jupyterhub

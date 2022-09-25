@@ -12,5 +12,6 @@ storageClass:
   name: standard
   archiveOnDelete: true # Archive PVC when deleting
   onDelete: retain  # Strategy on PVC deletion. Overrides archiveOnDelete when set to lowercase values 'delete' or 'retain'
+  defaultClass: true
 
 replicaCount: 2

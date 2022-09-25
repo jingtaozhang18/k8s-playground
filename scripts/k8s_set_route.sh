@@ -24,7 +24,6 @@ for node_name in ${node_names[@]}; do
   while [ ${not_running} != "0" ]; do
     minikube --profile ${PROFILE_NAME} ssh -n ${node_name} ls >/dev/null 2>&1
     not_running=$?
-    echo "waitting for ${PROFILE_NAME} 's ${node_name} running."
     sleep 5
     minikube --profile ${PROFILE_NAME} node list >/dev/null 2>&1
     if [ $? != 0 ]; then

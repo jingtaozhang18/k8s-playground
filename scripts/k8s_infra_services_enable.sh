@@ -23,6 +23,7 @@ NFS_STORAGE_NAMESPACE="storage-nfs"
 INFRA_NAMESPACE="infra"
 
 helm repo add nfs-subdir-external-provisioner https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner
+helm repo add bitnami https://charts.bitnami.com/bitnami
 helm repo update
 
 # get host ip
@@ -37,8 +38,6 @@ helm upgrade --install nfs-subdir-external-provisioner \
   --set nfs.server=${BR0_IP} \
   nfs-subdir-external-provisioner/nfs-subdir-external-provisioner
 
-helm repo add bitnami https://charts.bitnami.com/bitnami
-helm repo update
 
 minikube kubectl --profile ${PROFILE_NAME} -- create namespace ${INFRA_NAMESPACE} --dry-run=client -o yaml | minikube kubectl --profile ${PROFILE_NAME} -- apply -f -
 
@@ -61,10 +60,15 @@ helm upgrade --install bitnami-grafana-operator \
   --values ${WORKING_DIR}/configs/charts_values/grafana-operator-values.yaml \
   bitnami/grafana-operator
 
-# helm upgrade --install bitnami-jupyterhub \
-#   --namespace ${INFRA_NAMESPACE} \
-#   --values ${WORKING_DIR}/configs/charts_values/jupyterhub-values.yaml \
-#   bitnami/jupyterhub
+helm upgrade --install bitnami-postgresql \
+  --namespace ${INFRA_NAMESPACE} \
+  --values ${WORKING_DIR}/configs/charts_values/postgresql-values.yaml \
+  bitnami/postgresql
+
+helm upgrade --install bitnami-jupyterhub \
+  --namespace ${INFRA_NAMESPACE} \
+  --values ${WORKING_DIR}/configs/charts_values/jupyterhub-values.yaml \
+  bitnami/jupyterhub
 
 helm upgrade --install bitnami-kafka \
   --namespace ${INFRA_NAMESPACE} \

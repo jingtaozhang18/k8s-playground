@@ -1,0 +1,22 @@
+global:
+  imageRegistry: docker.io.registry.jingtao.fun
+  storageClass: standard
+  postgresql:
+    auth:
+      postgresPassword: nopasswd
+      username: jupytertest
+      password: nopasswd
+      database: jupyterhub
+
+architecture: replication
+
+primary:
+  persistence:
+    enabled: true
+    storageClass: standard
+
+readReplicas:
+  replicaCount: 2
+  persistence:
+    enabled: true
+    storageClass: standard
