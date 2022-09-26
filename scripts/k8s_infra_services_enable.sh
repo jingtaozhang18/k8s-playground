@@ -39,7 +39,7 @@ helm upgrade --install nfs-subdir-external-provisioner \
   --set nfs.server=${BR0_IP} \
   --set image.repository="k8s.gcr.io${IMAGE_MIRROR_SUFFIX}/sig-storage/nfs-subdir-external-provisioner" \
   --wait \
-  --timeout 5m0s \
+  --timeout 10m0s \
   nfs-subdir-external-provisioner/nfs-subdir-external-provisioner
 
 
@@ -51,7 +51,7 @@ helm upgrade --install bitnami-kube-prometheus \
   --values ${WORKING_DIR}/configs/charts_values/kube-prometheus-values.yaml \
   --set global.imageRegistry="docker.io${IMAGE_MIRROR_SUFFIX}" \
   --wait \
-  --timeout 5m0s \
+  --timeout 10m0s \
   --version 8.1.9 \
   bitnami/kube-prometheus
 
@@ -60,7 +60,7 @@ helm upgrade --install bitnami-grafana-operator \
   --values ${WORKING_DIR}/configs/charts_values/grafana-operator-values.yaml \
   --set global.imageRegistry="docker.io${IMAGE_MIRROR_SUFFIX}" \
   --wait \
-  --timeout 5m0s \
+  --timeout 10m0s \
   --version 2.7.4 \
   bitnami/grafana-operator
 
@@ -69,9 +69,36 @@ helm upgrade --install bitnami-mysql \
   --values ${WORKING_DIR}/configs/charts_values/mysql-values.yaml \
   --set global.imageRegistry="docker.io${IMAGE_MIRROR_SUFFIX}" \
   --wait \
-  --timeout 5m0s \
+  --timeout 10m0s \
   --version 9.3.4 \
   bitnami/mysql
+
+helm upgrade --install bitnami-kafka \
+  --namespace ${INFRA_NAMESPACE} \
+  --values ${WORKING_DIR}/configs/charts_values/kafka-values.yaml \
+  --set global.imageRegistry="docker.io${IMAGE_MIRROR_SUFFIX}" \
+  --wait \
+  --timeout 10m0s \
+  --version 18.4.4 \
+  bitnami/kafka
+
+helm upgrade --install bitnami-spark \
+  --namespace ${INFRA_NAMESPACE} \
+  --values ${WORKING_DIR}/configs/charts_values/spark-values.yaml \
+  --set global.imageRegistry="docker.io${IMAGE_MIRROR_SUFFIX}" \
+  --wait \
+  --timeout 10m0s \
+  --version 6.3.4 \
+  bitnami/spark
+
+helm upgrade --install bitnami-cosmos-shared \
+  --namespace ${INFRA_NAMESPACE} \
+  --values ${WORKING_DIR}/configs/charts_values/mongo-db-shared-values.yaml \
+  --set global.imageRegistry="docker.io${IMAGE_MIRROR_SUFFIX}" \
+  --wait \
+  --timeout 10m0s \
+  --version 6.1.3 \
+  bitnami/mongodb-sharded
 
 # # helm upgrade --install bitnami-postgresql \
 # #   --namespace ${INFRA_NAMESPACE} \
@@ -82,18 +109,3 @@ helm upgrade --install bitnami-mysql \
 # #   --namespace ${INFRA_NAMESPACE} \
 # #   --values ${WORKING_DIR}/configs/charts_values/jupyterhub-values.yaml \
 # #   bitnami/jupyterhub
-
-# # helm upgrade --install bitnami-kafka \
-# #   --namespace ${INFRA_NAMESPACE} \
-# #   --values ${WORKING_DIR}/configs/charts_values/kafka-values.yaml \
-# #   bitnami/kafka
-
-# # helm upgrade --install bitnami-spark \
-# #   --namespace ${INFRA_NAMESPACE} \
-# #   --values ${WORKING_DIR}/configs/charts_values/spark-values.yaml \
-# #   bitnami/spark
-
-# # helm upgrade --install bitnami-cosmos-shared \
-# #   --namespace ${INFRA_NAMESPACE} \
-# #   --values ${WORKING_DIR}/configs/charts_values/mongo-db-shared-values.yaml \
-# #   bitnami/mongodb-sharded
