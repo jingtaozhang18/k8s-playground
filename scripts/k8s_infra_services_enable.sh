@@ -99,13 +99,3 @@ helm upgrade --install bitnami-cosmos-shared \
   --timeout 10m0s \
   --version 6.1.3 \
   bitnami/mongodb-sharded
-
-# # helm upgrade --install bitnami-postgresql \
-# #   --namespace ${INFRA_NAMESPACE} \
-# #   --values ${WORKING_DIR}/configs/charts_values/postgresql-values.yaml \
-# #   bitnami/postgresql
-
-# # helm upgrade --install bitnami-jupyterhub \
-# #   --namespace ${INFRA_NAMESPACE} \
-# #   --values ${WORKING_DIR}/configs/charts_values/jupyterhub-values.yaml \
-# #   bitnami/jupyterhub
