@@ -158,17 +158,23 @@ PROFILE_NAME="playground"
 SOFT_ROUTE_IP="192.168.1.41"
 NODE_NUM=4
 bash ${WORKING_DIR}/scripts/k8s_set_route.sh ${PROFILE_NAME} ${NODE_NUM} ${SOFT_ROUTE_IP} &
+# export HTTP_PROXY=http://${SOFT_ROUTE_IP}:1080
+# export HTTPS_PROXY=https://${SOFT_ROUTE_IP}:1080
+# export NO_PROXY=localhost,127.0.0.1,10.96.0.0/12,192.168.59.0/24,192.168.49.0/24,192.168.39.0/24
+minikube config set WantUpdateNotification false
 minikube \
   --profile ${PROFILE_NAME} \
   --driver=kvm2 \
-  --addons metrics-server,registry \
-  --kubernetes-version v1.24.3 \
+  --install-addons=false \
+  --kubernetes-version='v1.24.3' \
   --auto-update-drivers=false \
-  --nodes ${NODE_NUM} \
-  --cpus 6 \
-  --memory 12g \
-  --disk-size 40g \
+  --nodes=${NODE_NUM} \
+  --cpus=6 \
+  --memory=12g \
+  --disk-size=40g \
   --kvm-network='bridged-network' \
+  --image-mirror-country='cn' \
+  --image-repository='registry.cn-hangzhou.aliyuncs.com/google_containers' \
   start
 ```
 
