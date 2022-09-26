@@ -22,12 +22,13 @@ minikube version
 # using transparent proxy instead http/https proxy
 # start minikube
 PROFILE_NAME="playground"
-SOFT_ROUTE_IP="192.168.1.1"
+SOFT_ROUTE_IP="192.168.1.41"
 NODE_NUM=4
-# bash ${WORKING_DIR}/scripts/k8s_set_route.sh ${PROFILE_NAME} ${NODE_NUM} ${SOFT_ROUTE_IP} &
+bash ${WORKING_DIR}/scripts/k8s_set_route.sh ${PROFILE_NAME} ${NODE_NUM} ${SOFT_ROUTE_IP} &
 # export HTTP_PROXY=http://${SOFT_ROUTE_IP}:1080
 # export HTTPS_PROXY=https://${SOFT_ROUTE_IP}:1080
 # export NO_PROXY=localhost,127.0.0.1,10.96.0.0/12,192.168.59.0/24,192.168.49.0/24,192.168.39.0/24
+minikube config set WantUpdateNotification false
 minikube \
   --profile ${PROFILE_NAME} \
   --driver=kvm2 \

@@ -1,14 +1,21 @@
 architecture: replication
 
-global:
-  imageRegistry: docker.io.registry.jingtao.fun
+image:
+  debug: true
 
-# image:
-#   tag: 5.7.39-debian-11-r20
+auth:
+  rootPassword: nopasswd
+  database: testdb
+  username: play
+  password: nopasswd
+  replicationUser: replicator
+  replicationPassword: nopasswd
 
 primary:
   persistence:
     storageClass: standard
+  startupProbe:
+    initialDelaySeconds: 20
 
 secondary:
   replicaCount: 2
@@ -16,14 +23,12 @@ secondary:
     enabled: true
     storageClass: standard
   startupProbe:
-    initialDelaySeconds: 30
+    initialDelaySeconds: 20
 
 metrics:
-  enabled: true  # Start a side-car prometheus exporter
-  image:
-    tag: 0.14.0-debian-11-r37
+  enabled: true # Start a side-car prometheus exporter
   serviceMonitor:
-    enabled: true  # Create ServiceMonitor Resource for scraping metrics using PrometheusOperator
+    enabled: true # Create ServiceMonitor Resource for scraping metrics using PrometheusOperator
     namespace: infra
     honorLabels: true
     interval: 5s

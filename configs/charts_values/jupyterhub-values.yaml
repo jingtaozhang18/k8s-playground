@@ -1,5 +1,4 @@
 global:
-  imageRegistry: docker.io.registry.jingtao.fun
   storageClass: standard
   
 singleuser:
@@ -14,6 +13,6 @@ postgresql:
 
 externalDatabase:
   host: bitnami-postgresql-primary.infra.svc.cluster.local
-  user: jupytertest
+  user: play
   password: nopasswd
   database: jupyterhub

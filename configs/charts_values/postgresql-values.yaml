@@ -1,10 +1,9 @@
 global:
-  imageRegistry: docker.io.registry.jingtao.fun
   storageClass: standard
   postgresql:
     auth:
       postgresPassword: nopasswd
-      username: jupytertest
+      username: play
       password: nopasswd
       database: jupyterhub
 
@@ -20,3 +19,16 @@ readReplicas:
   persistence:
     enabled: true
     storageClass: standard
+
+metrics:
+  enabled: true # Start a side-car prometheus exporter
+  image:
+    tag: 0.14.0-debian-11-r37
+  serviceMonitor:
+    enabled: true # Create ServiceMonitor Resource for scraping metrics using PrometheusOperator
+    namespace: infra
+    honorLabels: true
+    interval: 5s
+  prometheusRule:
+    enabled: true
+    namespace: infra

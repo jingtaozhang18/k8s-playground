@@ -1,6 +1,5 @@
 global:
   storageClass: standard
-  imageRegistry: docker.io.registry.jingtao.fun
 
 metrics:
   enabled: true

@@ -1,5 +1,4 @@
 global:
-  imageRegistry: docker.io.registry.jingtao.fun
   storageClass: standard
 
 configsvr:
@@ -17,3 +16,5 @@ shardsvr:
   dataNode:
     replicaCount: 3
 
+metrics:
+  enabled: true # Start a side-car prometheus exporter

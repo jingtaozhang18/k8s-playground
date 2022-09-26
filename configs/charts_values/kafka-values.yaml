@@ -1,5 +1,4 @@
 global:
-  imageRegistry: docker.io.registry.jingtao.fun
   storageClass: standard
 
 persistence:
@@ -11,10 +10,6 @@ auth:
   interBrokerProtocol: plaintext
 
 replicaCount: 3
-
-metrics:
-  kafka:
-    enabled: true
 
 provisioning:
   enabled: true
@@ -28,3 +23,17 @@ zookeeper:
       enabled: false
   persistence:
     storageClass: standard
+
+metrics:
+  kafka:
+    enabled: true
+  jmx:
+    enabled: true
+  serviceMonitor:
+    enabled: true # Create ServiceMonitor Resource for scraping metrics using PrometheusOperator
+    namespace: infra
+    honorLabels: true
+    interval: 5s
+  prometheusRule:
+    enabled: true
+    namespace: infra
