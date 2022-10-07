@@ -13,6 +13,7 @@ CONTEXT_NAME=${PROFILE_NAME}
 NFS_STORAGE_NAMESPACE="storage-nfs"
 INFRA_NAMESPACE="infra"
 IMAGE_MIRROR_SUFFIX=".registry.jingtao.fun"
+# IMAGE_MIRROR_SUFFIX=""  # Leave blank to not apply mirror service
 
 # check helm
 HELM_INSTALLED="y"

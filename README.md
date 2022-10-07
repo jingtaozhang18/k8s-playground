@@ -230,7 +230,8 @@ helm repo update
 PROFILE_NAME="playground"
 CONTEXT_NAME=${PROFILE_NAME}
 NFS_STORAGE_NAMESPACE="storage-nfs"
-IMAGE_MIRROR_SUFFIX=""
+IMAGE_MIRROR_SUFFIX=".registry.jingtao.fun"
+# IMAGE_MIRROR_SUFFIX=""  # Leave blank to not apply mirror service
 # get host ip
 BR0_IP=$(ip addr show br0 | grep inet | grep -v 127.0.0.1 | grep -v inet6 | awk '{print $2}' | tr -d "addr:")
 BR0_IP=$(echo ${BR0_IP//\// } | awk '{print $1}')
