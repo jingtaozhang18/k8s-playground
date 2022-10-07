@@ -3,6 +3,13 @@ global:
 
 metrics:
   enabled: true
+  podMonitor:
+    enabled: true
+    namespace: infra
+    interval: 5s
+  prometheusRule:
+    enabled: true
+    namespace: infra
 
 worker:
   replicaCount: 3

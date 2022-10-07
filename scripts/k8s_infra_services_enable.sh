@@ -55,6 +55,15 @@ helm upgrade --install bitnami-kube-prometheus \
   --version 8.1.9 \
   bitnami/kube-prometheus
 
+helm upgrade --install bitnami-kube-state-metrics \
+  --namespace ${INFRA_NAMESPACE} \
+  --values ${WORKING_DIR}/configs/charts_values/kube-state-metrics-values.yaml \
+  --set global.imageRegistry="docker.io${IMAGE_MIRROR_SUFFIX}" \
+  --wait \
+  --timeout 10m0s \
+  --version 3.2.3 \
+  bitnami/kube-state-metrics
+
 helm upgrade --install bitnami-grafana-operator \
   --namespace ${INFRA_NAMESPACE} \
   --values ${WORKING_DIR}/configs/charts_values/grafana-operator-values.yaml \

@@ -1,5 +1,8 @@
 #!/bin/bash
 
+set -eux
+set -o pipefail
+
 PROFILE_NAME=$1
 NODE_NUM=$2
 SOFT_ROUTE_IP=$3
@@ -14,20 +17,20 @@ for ((i = 2; i <= ${NODE_NUM}; i++)); do
   fi
 done
 
-echo "set route node names: ${node_names}"
+echo "set route: node names: ${node_names}"
 
 for node_name in ${node_names[@]}; do
-  echo "set route current node name is ${node_name}"
+  echo "set route: current node name is ${node_name}"
 
   minikube --profile ${PROFILE_NAME} ssh -n ${node_name} ls >/dev/null 2>&1
   not_running=$?
   while [ ${not_running} != "0" ]; do
     minikube --profile ${PROFILE_NAME} ssh -n ${node_name} ls >/dev/null 2>&1
     not_running=$?
-    sleep 5
+    sleep 1
     minikube --profile ${PROFILE_NAME} node list >/dev/null 2>&1
     if [ $? != 0 ]; then
-      echo "set route ${PROFILE_NAME} not exists."
+      echo "set route: ${PROFILE_NAME} not exists."
       exit 1
     fi
   done
@@ -43,5 +46,5 @@ for node_name in ${node_names[@]}; do
   minikube --profile ${PROFILE_NAME} ssh -n ${node_name} \
     "sudo ip route add default via ${SOFT_ROUTE_IP} dev eth1 proto dhcp src ${origin_ip} metric 1024"
 
-  echo "set route set ${PROFILE_NAME} 's ${node_name} route done."
+  echo "set route: set ${PROFILE_NAME} 's ${node_name} route done."
 done

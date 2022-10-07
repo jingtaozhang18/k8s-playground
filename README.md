@@ -138,6 +138,21 @@ virsh net-autostart bridged-network
 virsh net-list
 ```
 
+> You can also choose to use NAT mode.
+> ```bash
+> virsh net-define configs/network/kvm-nat-network.xml
+> virsh net-start nat-network
+> virsh net-autostart nat-network
+> virsh net-list
+> ```
+
+Refer:
+
+  * [KVM: Creating a guest VM on a NAT network](https://fabianlee.org/2019/05/26/kvm-creating-a-guest-vm-on-a-nat-network/)
+  * [KVM: Creating a bridged network with NetPlan on Ubuntu 18.04 bionic](https://fabianlee.org/2019/04/01/kvm-creating-a-bridged-network-with-netplan-on-ubuntu-bionic/)
+  * [JINGTAO: PVE 网络瞎折腾](https://jingtao.fun/posts/c8fc0d41/)
+  * [JINGTAO: 《Docker 容器与容器云》读书笔记 之 容器](https://jingtao.fun/posts/584611bc/)
+
 ## Create K8S Cluster
 
 ### Create Infra Standalone Services

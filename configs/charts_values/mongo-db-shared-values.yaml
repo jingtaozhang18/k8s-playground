@@ -18,3 +18,10 @@ shardsvr:
 
 metrics:
   enabled: true # Start a side-car prometheus exporter
+  podMonitor:
+    enabled: true
+    namespace: infra
+    interval: 5s
+  prometheusRule:
+    enabled: true
+    namespace: infra

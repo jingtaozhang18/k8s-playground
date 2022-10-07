@@ -6,6 +6,9 @@ prometheus:
   thanos:
     create: true
 
+operator:
+  enabled: true
+
 alertmanager:
   persistence:
     enabled: true
