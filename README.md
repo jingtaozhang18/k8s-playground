@@ -140,6 +140,7 @@ virsh net-list
 > Someday, the network is down in virtual machine, and the root cause is still unknown.
 
 > You can also choose to use NAT mode.
+> 
 > *You cannot access specific network through changing route ip in nat mode*
 > ```bash
 > virsh net-define configs/network/kvm-nat-network.xml
