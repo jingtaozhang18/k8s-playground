@@ -15,7 +15,7 @@ Table Contents
       - [Create NFS Server](#create-nfs-server)
     - [Start K8S Cluster](#start-k8s-cluster)
   - [Install Infra Service in K8S](#install-infra-service-in-k8s)
-    - [Install `nfs-client` Storage Class](#install-nfs-client-storage-class)
+    - [Install `standard` Storage Class](#install-standard-storage-class)
 
 ## Architecture
 
@@ -137,6 +137,25 @@ virsh net-start bridged-network
 virsh net-autostart bridged-network
 virsh net-list
 ```
+> Someday, the network is down in virtual machine, and the root cause is still unknown.
+
+> You can also choose to use NAT mode.
+> 
+> *You cannot access specific network through changing route ip in nat mode*
+> 
+> ```bash
+> virsh net-define configs/network/kvm-nat-network.xml
+> virsh net-start nat-network
+> virsh net-autostart nat-network
+> virsh net-list
+> ```
+
+Refer:
+
+  * [KVM: Creating a guest VM on a NAT network](https://fabianlee.org/2019/05/26/kvm-creating-a-guest-vm-on-a-nat-network/)
+  * [KVM: Creating a bridged network with NetPlan on Ubuntu 18.04 bionic](https://fabianlee.org/2019/04/01/kvm-creating-a-bridged-network-with-netplan-on-ubuntu-bionic/)
+  * [JINGTAO: PVE 网络瞎折腾](https://jingtao.fun/posts/c8fc0d41/)
+  * [JINGTAO: 《Docker 容器与容器云》读书笔记 之 容器](https://jingtao.fun/posts/584611bc/)
 
 ## Create K8S Cluster
 
@@ -154,21 +173,28 @@ Now, It is all ready for starting k8s cluster! Start it through below command.
 For setting route for k8s cluster, run `scripts/k8s_set_route.sh` script which will set route when node is ready.
 
 ```bash
-PROFILE_NAME="playground"
-SOFT_ROUTE_IP="192.168.1.41"
+PROFILE_NAME='playground'
+SOFT_ROUTE_IP='192.168.1.41'
+KVM_NETWORK='nat-network'
 NODE_NUM=4
-bash ${WORKING_DIR}/scripts/k8s_set_route.sh ${PROFILE_NAME} ${NODE_NUM} ${SOFT_ROUTE_IP} &
+# bash ${WORKING_DIR}/scripts/k8s_set_route.sh ${PROFILE_NAME} ${NODE_NUM} ${SOFT_ROUTE_IP} &
+# export HTTP_PROXY=http://${SOFT_ROUTE_IP}:1080
+# export HTTPS_PROXY=https://${SOFT_ROUTE_IP}:1080
+# export NO_PROXY=localhost,127.0.0.1,10.96.0.0/12,192.168.59.0/24,192.168.49.0/24,192.168.39.0/24
+minikube config set WantUpdateNotification false
 minikube \
   --profile ${PROFILE_NAME} \
   --driver=kvm2 \
-  --addons metrics-server,registry \
-  --kubernetes-version v1.24.3 \
+  --install-addons=false \
+  --kubernetes-version='v1.24.3' \
   --auto-update-drivers=false \
-  --nodes ${NODE_NUM} \
-  --cpus 6 \
-  --memory 12g \
-  --disk-size 40g \
-  --kvm-network='bridged-network' \
+  --nodes=${NODE_NUM} \
+  --cpus=6 \
+  --memory=12g \
+  --disk-size=40g \
+  --kvm-network="${KVM_NETWORK}" \
+  --image-mirror-country='cn' \
+  --image-repository='registry.cn-hangzhou.aliyuncs.com/google_containers' \
   start
 ```
 
@@ -192,9 +218,9 @@ Refer to [k8s_start.sh](scripts/k8s_start.sh).
 
 Refer to [k8s_infra_services_enable.sh](scripts/k8s_infra_services_enable.sh) for all deploy code.
 
-### Install `nfs-client` Storage Class
+### Install `standard` Storage Class
 
-Because this is a multi-nodes k8s, so the default storage class which using a certain host path can't satisfy the need. And the `nfs-client` storage class can mount a nfs path which can be accessed by any node.
+Because this is a multi-nodes k8s, so the default storage class which using a certain host path can't satisfy the need. And the `standard` storage class can mount a nfs path which can be accessed by any node.
 
 Deploy it using below command.
 
@@ -204,6 +230,8 @@ helm repo update
 PROFILE_NAME="playground"
 CONTEXT_NAME=${PROFILE_NAME}
 NFS_STORAGE_NAMESPACE="storage-nfs"
+IMAGE_MIRROR_SUFFIX=".registry.jingtao.fun"
+# IMAGE_MIRROR_SUFFIX=""  # Leave blank to not apply mirror service
 # get host ip
 BR0_IP=$(ip addr show br0 | grep inet | grep -v 127.0.0.1 | grep -v inet6 | awk '{print $2}' | tr -d "addr:")
 BR0_IP=$(echo ${BR0_IP//\// } | awk '{print $1}')
@@ -214,6 +242,9 @@ helm upgrade --install nfs-subdir-external-provisioner \
   --namespace ${NFS_STORAGE_NAMESPACE} \
   --values configs/charts_values/nfs-values.yaml \
   --set nfs.server=${BR0_IP} \
+  --set image.repository="k8s.gcr.io${IMAGE_MIRROR_SUFFIX}/sig-storage/nfs-subdir-external-provisioner" \
+  --wait \
+  --timeout 10m0s \
   nfs-subdir-external-provisioner/nfs-subdir-external-provisioner
 ```
 

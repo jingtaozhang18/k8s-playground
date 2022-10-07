@@ -1,0 +1,12 @@
+grafana:
+  persistence:
+    enabled: true
+    storageClass: standard
+
+operator:
+  prometheus:
+    serviceMonitor:
+      enabled: true
+      namespace: infra
+      honorLabels: true
+      interval: 5s

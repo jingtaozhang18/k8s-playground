@@ -1,0 +1,27 @@
+global:
+  storageClass: standard
+
+configsvr:
+  replicaCount: 3
+  persistence:
+    enabled: true
+    storageClass: standard
+
+mongos:
+  replicaCount: 3
+
+shardsvr:
+  persistence:
+    storageClass: standard
+  dataNode:
+    replicaCount: 3
+
+metrics:
+  enabled: true # Start a side-car prometheus exporter
+  podMonitor:
+    enabled: true
+    namespace: infra
+    interval: 5s
+  prometheusRule:
+    enabled: true
+    namespace: infra

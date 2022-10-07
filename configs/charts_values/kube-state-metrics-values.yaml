@@ -1,0 +1,5 @@
+serviceMonitor:
+  enabled: true # Create ServiceMonitor Resource for scraping metrics using PrometheusOperator
+  namespace: infra
+  honorLabels: true
+  interval: 5s

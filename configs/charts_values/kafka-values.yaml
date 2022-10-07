@@ -1,0 +1,39 @@
+global:
+  storageClass: standard
+
+persistence:
+  enabled: true
+  storageClass: standard
+
+auth:
+  clientProtocol: plaintext
+  interBrokerProtocol: plaintext
+
+replicaCount: 3
+
+provisioning:
+  enabled: true
+  numPartitions: 2
+
+zookeeper:
+  enabled: true
+  replicaCount: 3
+  auth:
+    client:
+      enabled: false
+  persistence:
+    storageClass: standard
+
+metrics:
+  kafka:
+    enabled: true
+  jmx:
+    enabled: true
+  serviceMonitor:
+    enabled: true # Create ServiceMonitor Resource for scraping metrics using PrometheusOperator
+    namespace: infra
+    honorLabels: true
+    interval: 5s
+  prometheusRule:
+    enabled: true
+    namespace: infra

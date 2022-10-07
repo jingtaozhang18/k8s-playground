@@ -1,0 +1,15 @@
+prometheus:
+  persistence:
+    enabled: true
+    storageClass: standard
+
+  thanos:
+    create: true
+
+operator:
+  enabled: true
+
+alertmanager:
+  persistence:
+    enabled: true
+    storageClass: standard

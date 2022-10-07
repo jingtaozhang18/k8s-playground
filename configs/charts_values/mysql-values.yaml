@@ -1,0 +1,37 @@
+architecture: replication
+
+image:
+  debug: true
+
+auth:
+  rootPassword: nopasswd
+  database: testdb
+  username: play
+  password: nopasswd
+  replicationUser: replicator
+  replicationPassword: nopasswd
+
+primary:
+  persistence:
+    storageClass: standard
+  startupProbe:
+    initialDelaySeconds: 20
+
+secondary:
+  replicaCount: 2
+  persistence:
+    enabled: true
+    storageClass: standard
+  startupProbe:
+    initialDelaySeconds: 20
+
+metrics:
+  enabled: true # Start a side-car prometheus exporter
+  serviceMonitor:
+    enabled: true # Create ServiceMonitor Resource for scraping metrics using PrometheusOperator
+    namespace: infra
+    honorLabels: true
+    interval: 5s
+  prometheusRule:
+    enabled: true
+    namespace: infra
