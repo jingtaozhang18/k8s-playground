@@ -21,8 +21,9 @@ minikube version
 
 # using transparent proxy instead http/https proxy
 # start minikube
-PROFILE_NAME="playground"
-SOFT_ROUTE_IP="192.168.1.41"
+PROFILE_NAME='playground'
+SOFT_ROUTE_IP='192.168.1.41'
+KVM_NETWORK='nat-network'
 NODE_NUM=4
 # bash ${WORKING_DIR}/scripts/k8s_set_route.sh ${PROFILE_NAME} ${NODE_NUM} ${SOFT_ROUTE_IP} &
 # export HTTP_PROXY=http://${SOFT_ROUTE_IP}:1080
@@ -39,7 +40,7 @@ minikube \
   --cpus=6 \
   --memory=12g \
   --disk-size=40g \
-  --kvm-network='nat-network' \
+  --kvm-network="${KVM_NETWORK}" \
   --image-mirror-country='cn' \
   --image-repository='registry.cn-hangzhou.aliyuncs.com/google_containers' \
   start

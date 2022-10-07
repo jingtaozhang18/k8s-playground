@@ -171,10 +171,11 @@ Now, It is all ready for starting k8s cluster! Start it through below command.
 For setting route for k8s cluster, run `scripts/k8s_set_route.sh` script which will set route when node is ready.
 
 ```bash
-PROFILE_NAME="playground"
-SOFT_ROUTE_IP="192.168.1.41"
+PROFILE_NAME='playground'
+SOFT_ROUTE_IP='192.168.1.41'
+KVM_NETWORK='nat-network'
 NODE_NUM=4
-bash ${WORKING_DIR}/scripts/k8s_set_route.sh ${PROFILE_NAME} ${NODE_NUM} ${SOFT_ROUTE_IP} &
+# bash ${WORKING_DIR}/scripts/k8s_set_route.sh ${PROFILE_NAME} ${NODE_NUM} ${SOFT_ROUTE_IP} &
 # export HTTP_PROXY=http://${SOFT_ROUTE_IP}:1080
 # export HTTPS_PROXY=https://${SOFT_ROUTE_IP}:1080
 # export NO_PROXY=localhost,127.0.0.1,10.96.0.0/12,192.168.59.0/24,192.168.49.0/24,192.168.39.0/24
@@ -189,7 +190,7 @@ minikube \
   --cpus=6 \
   --memory=12g \
   --disk-size=40g \
-  --kvm-network='bridged-network' \
+  --kvm-network="${KVM_NETWORK}" \
   --image-mirror-country='cn' \
   --image-repository='registry.cn-hangzhou.aliyuncs.com/google_containers' \
   start
