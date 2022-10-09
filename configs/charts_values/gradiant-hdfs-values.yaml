@@ -1,0 +1,10 @@
+persistence:
+  dataNode:
+    enabled: true
+    storageClass: standard
+  nameNode:
+    enabled: true
+    storageClass: standard
+
+dataNode:
+  replicas: 3
