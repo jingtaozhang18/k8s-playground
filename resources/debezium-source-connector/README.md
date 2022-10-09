@@ -9,10 +9,10 @@ Refer to [Operator QuickStart](https://olm.operatorframework.io/docs/getting-sta
 ## Deploy Resource
 
 ```bash
-kubectl apply -f connector-configuration-role.yaml # Role 
-kubectl apply -f connector-configuration-role-binding.yaml # RoleBinding
-kubectl apply -f debezium-connect-cluster.yaml # KafkaConnect
-kubectl apply -f debezium-connector-mysql.yaml # KafkaConnector running on KafkaConnect
+kubectl apply -f debezium-source-connector-configuration-role.yaml # Role 
+kubectl apply -f debezium-source-connector-configuration-role-binding.yaml # RoleBinding
+kubectl apply -f debezium-source-connect-cluster.yaml # KafkaConnect
+kubectl apply -f debezium-source-connector-mysql.yaml # KafkaConnector running on KafkaConnect
 ```
 
 # Refer

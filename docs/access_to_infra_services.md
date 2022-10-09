@@ -65,3 +65,11 @@ mysql -h bitnami-mysql-secondary.infra.svc.cluster.local -uroot -p"$MYSQL_ROOT_P
 ** IMPORTANT: When submit an application from outside the cluster service type should be set to the NodePort or LoadBalancer. **
 
 ** IMPORTANT: When submit an application the --master parameter should be set to the service IP, if not, the application will not resolve the master. **
+
+
+## MongoDB
+
+Connection String
+```
+mongodb://root:{passwd}@bitnami-cosmos-shared-mongodb-sharded.infra.svc.cluster.local:27017/?authSource=admin&readPreference=primary&ssl=false
+```

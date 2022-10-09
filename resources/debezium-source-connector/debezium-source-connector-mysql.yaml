@@ -1,9 +1,9 @@
 apiVersion: kafka.strimzi.io/v1beta2
 kind: KafkaConnector
 metadata:
-  name: debezium-connector-mysql
+  name: debezium-source-connector-mysql
   labels:
-    strimzi.io/cluster: debezium-connect-cluster
+    strimzi.io/cluster: debezium-source-connect-cluster
 spec:
   class: io.debezium.connector.mysql.MySqlConnector
   tasksMax: 1
@@ -13,8 +13,8 @@ spec:
     database.port: 3306
     database.user: root
     database.password: ${secrets:infra/bitnami-mysql:mysql-replication-password}
-    database.server.id: 184054
-    database.server.name: mysql-test-v3
+    database.server.id: 184056
+    database.server.name: db_world_v1
     database.include.list: db_world
     database.history.kafka.bootstrap.servers: bitnami-kafka.infra.svc.cluster.local:9092
     database.history.kafka.topic: schema-changes.db_world

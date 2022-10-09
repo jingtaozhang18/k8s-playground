@@ -1,13 +1,13 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: connector-configuration-role-binding
+  name: debezium-source-connector-configuration-role-binding
   namespace: infra
 subjects:
   - kind: ServiceAccount
-    name: debezium-connect-cluster-connect
+    name: debezium-source-connect-cluster-connect
     namespace: infra
 roleRef:
   kind: Role
-  name: connector-configuration-role
+  name: debezium-source-connector-configuration-role
   apiGroup: rbac.authorization.k8s.io
