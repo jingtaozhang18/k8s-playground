@@ -109,3 +109,15 @@ helm upgrade --install bitnami-cosmos-shared \
   --timeout 10m0s \
   --version 6.1.3 \
   bitnami/mongodb-sharded
+
+mkdir -p ${WORKING_DIR}/charts
+CHARTS_DIR=${WORKING_DIR}/charts/bigdata-charts
+if [ ! -d "${CHARTS_DIR}" ]; then
+  git clone https://github.com/jingtaozhang18/bigdata-charts.git ${CHARTS_DIR}
+fi
+helm upgrade --install gradiant-hdfs \
+  --namespace ${INFRA_NAMESPACE} \
+  --values ${WORKING_DIR}/configs/charts_values/gradiant-hdfs-values.yaml \
+  --wait \
+  --timeout 10m0s \
+  ${CHARTS_DIR}/charts/hdfs
