@@ -11,9 +11,11 @@ echo "User Passwd: $(kubectl get secret --namespace infra grafana-admin-credenti
 kubectl port-forward services/grafana-service 3000:3000 -n infra &
 ```
 
+Grafana URL: `http://grafana-service.infra.svc.cluster.local:3000`
+
 Prometheus URL: `http://bitnami-kube-prometheus-prometheus.infra.svc.cluster.local:9090`
 
-Dash board list:
+Dashboard list:
 
 * 13332 [Kube State Metrics V2](https://grafana.com/grafana/dashboards/13332-kube-state-metrics-v2/)
 * 7362  [MySQL Overview](https://grafana.com/grafana/dashboards/7362-mysql-overview/)
@@ -43,6 +45,8 @@ mysql -h bitnami-mysql-secondary.infra.svc.cluster.local -uroot -p"$MYSQL_ROOT_P
    Then open the ui in your browser:
    
    open http://localhost:50070
+
+Web URL: `http://gradiant-hdfs-namenode-exporter.infra.svc.cluster.local:50070`
 
 ## Spark
 
