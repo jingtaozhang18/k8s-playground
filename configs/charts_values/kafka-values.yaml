@@ -11,6 +11,10 @@ auth:
 
 replicaCount: 3
 
+defaultReplicationFactor: 1
+offsetsTopicReplicationFactor: 1
+transactionStateLogReplicationFactor: 1
+
 provisioning:
   enabled: true
   numPartitions: 2
