@@ -8,6 +8,7 @@ Refer to [Operator QuickStart](https://olm.operatorframework.io/docs/getting-sta
 
 ```bash
 operator-sdk olm install
+kubectl create -f https://operatorhub.io/install/strimzi-kafka-operator.yaml
 ```
 
 ## Deploy Resource
