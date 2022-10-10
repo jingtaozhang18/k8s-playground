@@ -65,6 +65,15 @@ helm upgrade --install bitnami-kube-state-metrics \
   --version 3.2.3 \
   bitnami/kube-state-metrics
 
+helm upgrade --install bitnami-node-exporter \
+  --namespace ${INFRA_NAMESPACE} \
+  --values ${WORKING_DIR}/configs/charts_values/node-exporter-values.yaml \
+  --set global.imageRegistry="docker.io${IMAGE_MIRROR_SUFFIX}" \
+  --wait \
+  --timeout 10m0s \
+  --version 3.2.1 \
+  bitnami/node-exporter
+
 helm upgrade --install bitnami-grafana-operator \
   --namespace ${INFRA_NAMESPACE} \
   --values ${WORKING_DIR}/configs/charts_values/grafana-operator-values.yaml \
