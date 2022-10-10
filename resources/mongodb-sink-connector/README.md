@@ -10,13 +10,13 @@ Refer to [Operator QuickStart](https://olm.operatorframework.io/docs/getting-sta
 kubectl apply -f mongodb-sink-connector-configuration-role.yaml # Role 
 kubectl apply -f mongodb-sink-connector-configuration-role-binding.yaml # RoleBinding
 kubectl apply -f mongodb-sink-connect-cluster.yaml # KafkaConnect
-kubectl apply -f mongodb-sink-connector.yaml # KafkaConnector running on KafkaConnect
+kubectl apply -f mongodb-sink-connector-multi-topics.yaml # KafkaConnector running on KafkaConnect
 ```
 
 ## Destroy Resource
 
 ```bash
-kubectl delete KafkaConnector mongodb-sink-connector
+kubectl delete KafkaConnector mongodb-sink-connector-multi-topics
 kubectl delete KafkaConnect mongodb-sink-connect-cluster
 kubectl delete RoleBinding mongodb-sink-connector-configuration-role-binding
 kubectl delete Role mongodb-sink-connector-configuration-role
