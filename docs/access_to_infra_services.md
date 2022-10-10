@@ -46,7 +46,7 @@ mysql -h bitnami-mysql-secondary.infra.svc.cluster.local -uroot -p"$MYSQL_ROOT_P
    
    open http://localhost:50070
 
-Web URL: `http://gradiant-hdfs-namenode-exporter.infra.svc.cluster.local:50070`
+Web URL: `http://gradiant-hdfs-namenode.infra.svc.cluster.local:50070`
 
 ## Spark
 
