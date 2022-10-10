@@ -81,7 +81,11 @@ Web URL: `http://gradiant-hdfs-namenode.infra.svc.cluster.local:50070`
 
 ## MongoDB
 
+```bash
+export MONGODB_ROOT_PASSWORD=$(kubectl get secret --namespace infra bitnami-cosmos-shared-mongodb-sharded -o jsonpath="{.data.mongodb-root-password}" | base64 -d)
+```
+
 Connection String
 ```
-mongodb://root:{passwd}@bitnami-cosmos-shared-mongodb-sharded.infra.svc.cluster.local:27017/?authSource=admin&readPreference=primary&ssl=false
+mongodb://root:{MONGODB_ROOT_PASSWORD}@bitnami-cosmos-shared-mongodb-sharded.infra.svc.cluster.local:27017/?authSource=admin&readPreference=primary&ssl=false
 ```
