@@ -1,6 +1,14 @@
 
 # The Method to Access Services in Infra
 
+Proxy Tools:
+
+* ktctl
+  
+  ```bash
+  sudo ktctl --kubeconfig /home/${USER}/.kube/config connect
+  ```
+
 ## Grafana
 
 Check user name and passwd, and forword port.
