@@ -4,6 +4,8 @@
 
 **simulate-mysql-op** -(op)-> **MySQL Primary Server** -(sync)-> **MySQL Secondary Server** -(debezium)-> **Kafka Source Connector** -> **Kafka** -(mongodb connector)-> **Kafka Sink Connector** -> **MongoDB**
 
+> Can't ensure accessing one specifical MySQL Secondary Server, so Debezium now connect to MySQL Primary Server
+
 Refer [simulate-mysql-op](./simulate-mysql-op) for simulating concurrent operation on MySQL.
 
 Refer [debezium-source-connector](./debezium-source-connector) for capturing change data from MySQL to Kafka.
