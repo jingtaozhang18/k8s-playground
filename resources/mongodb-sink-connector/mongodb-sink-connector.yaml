@@ -9,7 +9,7 @@ spec:
   tasksMax: 2
   config:
     topics: schema-changes.db_world_v2
-    connection.uri: "mongodb://root:${secrets:infra/bitnami-mysql:mysql-replication-password}@bitnami-cosmos-shared-mongodb-sharded.infra.svc.cluster.local:27017/?authSource=admin&readPreference=primary&ssl=false"
+    connection.uri: "mongodb://root:${secrets:infra/bitnami-cosmos-shared-mongodb-sharded:mongodb-root-password}@bitnami-cosmos-shared-mongodb-sharded.infra.svc.cluster.local:27017/?authSource=admin&readPreference=primary&ssl=false"
     database: my_database
     collection: my_collection
     post.processor.chain: com.mongodb.kafka.connect.sink.processor.DocumentIdAdder,com.mongodb.kafka.connect.sink.processor.KafkaMetaAdder
