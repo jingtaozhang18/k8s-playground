@@ -1,0 +1,16 @@
+persistence:
+  enabled: true
+  storageClass: standard
+  size: 100Gi
+
+mode: distributed
+
+statefulset:
+  replicaCount: 4
+
+metrics:
+  serviceMonitor:
+    enabled: true # Create ServiceMonitor Resource for scraping metrics using PrometheusOperator
+    namespace: infra
+    honorLabels: true
+    interval: 5s

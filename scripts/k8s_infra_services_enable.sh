@@ -121,3 +121,12 @@ helm upgrade --install gradiant-hdfs \
   --wait \
   --timeout 10m0s \
   ${CHARTS_DIR}/charts/hdfs
+
+helm upgrade --install bitnami-minio \
+  --namespace ${INFRA_NAMESPACE} \
+  --values ${WORKING_DIR}/configs/charts_values/minio-values.yaml \
+  --set global.imageRegistry="docker.io${IMAGE_MIRROR_SUFFIX}" \
+  --wait \
+  --timeout 10m0s \
+  --version 11.10.7 \
+  bitnami/minio
