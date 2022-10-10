@@ -6,6 +6,10 @@ Refer to [Debezium Documentation / Operations / Running on Kubernetes](https://d
 
 Refer to [Operator QuickStart](https://olm.operatorframework.io/docs/getting-started/)
 
+```bash
+operator-sdk olm install
+```
+
 ## Deploy Resource
 
 ```bash
