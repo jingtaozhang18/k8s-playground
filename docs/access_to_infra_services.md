@@ -9,6 +9,13 @@ Proxy Tools:
   sudo ktctl --kubeconfig /home/${USER}/.kube/config connect
   ```
 
+* socks5-proxy
+  
+  ```bash
+  # refer https://krew.sigs.k8s.io/docs/user-guide/setup/install/ to install krew
+  kubectl krew install socks5-proxy
+  ```
+
 ## Grafana
 
 Check user name and passwd, and forword port.
