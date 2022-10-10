@@ -15,6 +15,15 @@ kubectl apply -f debezium-source-connect-cluster.yaml # KafkaConnect
 kubectl apply -f debezium-source-connector-mysql.yaml # KafkaConnector running on KafkaConnect
 ```
 
+## Destroy Resource
+
+```bash
+kubectl delete KafkaConnector debezium-source-connector-mysql
+kubectl delete KafkaConnect debezium-source-connect-cluster
+kubectl delete RoleBinding debezium-source-connector-configuration-role-binding
+kubectl delete Role debezium-source-connector-configuration-role
+```
+
 # Refer
 
 * [Debezium Documentation / Operations / Running on Kubernetes](https://debezium.io/documentation/reference/stable/operations/kubernetes.html#_creating_kafka_connect_cluster)

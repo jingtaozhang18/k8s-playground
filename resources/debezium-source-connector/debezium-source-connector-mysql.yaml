@@ -13,8 +13,8 @@ spec:
     database.port: 3306
     database.user: root
     database.password: ${secrets:infra/bitnami-mysql:mysql-replication-password}
-    database.server.id: 184056
-    database.server.name: db_world_v1
     database.include.list: db_world
     database.history.kafka.bootstrap.servers: bitnami-kafka.infra.svc.cluster.local:9092
-    database.history.kafka.topic: schema-changes.db_world
+    database.server.id: 184057
+    database.server.name: db_world_v2
+    database.history.kafka.topic: schema-changes.db_world_v2

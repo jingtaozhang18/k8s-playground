@@ -11,10 +11,10 @@ spec:
   config:
     config.providers: secrets
     config.providers.secrets.class: io.strimzi.kafka.KubernetesSecretConfigProvider
-    group.id: debezium-connect-cluster
-    offset.storage.topic: debezium-connect-cluster-offsets
-    config.storage.topic: debezium-connect-cluster-configs
-    status.storage.topic: debezium-connect-cluster-status
+    group.id: debezium-source-connect-cluster
+    offset.storage.topic: debezium-source-connect-cluster-offsets
+    config.storage.topic: debezium-source-connect-cluster-configs
+    status.storage.topic: debezium-source-connect-cluster-status
     # -1 means it will use the default replication factor configured in the broker
     config.storage.replication.factor: -1
     offset.storage.replication.factor: -1
