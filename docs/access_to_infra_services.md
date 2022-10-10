@@ -25,6 +25,7 @@ Prometheus URL: `http://bitnami-kube-prometheus-prometheus.infra.svc.cluster.loc
 
 Dashboard list:
 
+* 1860  [Node Exporter Full](https://grafana.com/grafana/dashboards/1860-node-exporter-full/)
 * 13332 [Kube State Metrics V2](https://grafana.com/grafana/dashboards/13332-kube-state-metrics-v2/)
 * 7362  [MySQL Overview](https://grafana.com/grafana/dashboards/7362-mysql-overview/)
 * 12483 [Kubernetes Kafka](https://grafana.com/grafana/dashboards/12483-kubernetes-kafka/)
