@@ -27,4 +27,3 @@ kubectl delete Role mongodb-sink-connector-configuration-role
 * [MongoDB Connector (Source and Sink)](https://www.confluent.io/hub/mongodb/kafka-connect-mongodb)
 * [Operator Install](https://sdk.operatorframework.io/docs/installation/)
 * [Operator QuickStart](https://olm.operatorframework.io/docs/getting-started/)
-
