@@ -253,13 +253,9 @@ helm upgrade --install nfs-subdir-external-provisioner \
 
 ## Docs
 
-### Access Services
+### [Access Services](./docs/access_to_infra_services.md)
 
-* [access_to_infra_services.md](./docs/access_to_infra_services.md)
-
-### Change Data Capture Playground
-
-* [CDC Playground](./resources/change_data_capture_playground/)
+### [Change Data Capture Playground](./resources/change_data_capture_playground/)
 
 Refer:
   * [Kubernetes NFS Subdir External Provisioner](https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner)
