@@ -16,6 +16,9 @@ Table Contents
     - [Start K8S Cluster](#start-k8s-cluster)
   - [Install Infra Service in K8S](#install-infra-service-in-k8s)
     - [Install `standard` Storage Class](#install-standard-storage-class)
+  - [Docs](#docs)
+    - [Access Services](#access-services)
+    - [Change Data Capture Playground](#change-data-capture-playground)
 
 ## Architecture
 
@@ -247,6 +250,16 @@ helm upgrade --install nfs-subdir-external-provisioner \
   --timeout 10m0s \
   nfs-subdir-external-provisioner/nfs-subdir-external-provisioner
 ```
+
+## Docs
+
+### Access Services
+
+* [access_to_infra_services.md](./docs/access_to_infra_services.md)
+
+### Change Data Capture Playground
+
+* [CDC Playground](./resources/change_data_capture_playground/)
 
 Refer:
   * [Kubernetes NFS Subdir External Provisioner](https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner)

@@ -94,9 +94,38 @@ export MONGODB_ROOT_PASSWORD=$(kubectl get secret --namespace infra bitnami-cosm
 ```
 
 Connection String
+
+```bash
+echo "mongodb://root:${MONGODB_ROOT_PASSWORD}@bitnami-cosmos-shared-mongodb-sharded.infra.svc.cluster.local:27017/?authSource=admin&readPreference=primary&ssl=false"
 ```
-mongodb://root:{MONGODB_ROOT_PASSWORD}@bitnami-cosmos-shared-mongodb-sharded.infra.svc.cluster.local:27017/?authSource=admin&readPreference=primary&ssl=false
-```
+
+## Kafka
+
+Kafka can be accessed by consumers via port 9092 on the following DNS name from within your cluster:
+
+    bitnami-kafka.infra.svc.cluster.local
+
+Each Kafka broker can be accessed by producers via port 9092 on the following DNS name(s) from within your cluster:
+
+    bitnami-kafka-0.bitnami-kafka-headless.infra.svc.cluster.local:9092
+    bitnami-kafka-1.bitnami-kafka-headless.infra.svc.cluster.local:9092
+    bitnami-kafka-2.bitnami-kafka-headless.infra.svc.cluster.local:9092
+
+To create a pod that you can use as a Kafka client run the following commands:
+
+    kubectl run bitnami-kafka-client --restart='Never' --image docker.io.registry.jingtao.fun/bitnami/kafka:3.2.3-debian-11-r1 --namespace infra --command -- sleep infinity
+    kubectl exec --tty -i bitnami-kafka-client --namespace infra -- bash
+
+    PRODUCER:
+        kafka-console-producer.sh \
+            --broker-list bitnami-kafka-0.bitnami-kafka-headless.infra.svc.cluster.local:9092,bitnami-kafka-1.bitnami-kafka-headless.infra.svc.cluster.local:9092,bitnami-kafka-2.bitnami-kafka-headless.infra.svc.cluster.local:9092 \
+            --topic test
+
+    CONSUMER:
+        kafka-console-consumer.sh \
+            --bootstrap-server bitnami-kafka.infra.svc.cluster.local:9092 \
+            --topic test \
+            --from-beginning
 
 ## Minio
 

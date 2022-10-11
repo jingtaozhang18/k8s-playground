@@ -4,3 +4,4 @@ configs/charts_values/jupyterhub-values.yaml
 configs/charts_values/postgresql-values.yaml
 configs/network/kvm-routed-network.xml
 scripts/k8s_infra_services_disable.sh
+tmp.txt

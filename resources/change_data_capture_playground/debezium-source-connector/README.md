@@ -16,15 +16,15 @@ kubectl create -f https://operatorhub.io/install/strimzi-kafka-operator.yaml
 ```bash
 kubectl apply -f debezium-source-connector-configuration-role.yaml # Role 
 kubectl apply -f debezium-source-connector-configuration-role-binding.yaml # RoleBinding
-kubectl apply -f debezium-source-connect-cluster.yaml # KafkaConnect
-kubectl apply -f debezium-source-connector-mysql.yaml # KafkaConnector running on KafkaConnect
+kubectl apply -n infra -f debezium-source-connect-cluster.yaml # KafkaConnect
+kubectl apply -n infra -f debezium-source-connector-mysql.yaml # KafkaConnector running on KafkaConnect
 ```
 
 ## Destroy Resource
 
 ```bash
-kubectl delete KafkaConnector debezium-source-connector-mysql
-kubectl delete KafkaConnect debezium-source-connect-cluster
+kubectl delete -n infra KafkaConnector debezium-source-connector-mysql
+kubectl delete -n infra KafkaConnect debezium-source-connect-cluster
 kubectl delete RoleBinding debezium-source-connector-configuration-role-binding
 kubectl delete Role debezium-source-connector-configuration-role
 ```
@@ -34,3 +34,4 @@ kubectl delete Role debezium-source-connector-configuration-role
 * [Debezium Documentation / Operations / Running on Kubernetes](https://debezium.io/documentation/reference/stable/operations/kubernetes.html#_creating_kafka_connect_cluster)
 * [Operator Install](https://sdk.operatorframework.io/docs/installation/)
 * [Operator QuickStart](https://olm.operatorframework.io/docs/getting-started/)
+
