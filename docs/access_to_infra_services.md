@@ -33,9 +33,10 @@ Prometheus URL: `http://bitnami-kube-prometheus-prometheus.infra.svc.cluster.loc
 Dashboard list:
 
 * 1860  [Node Exporter Full](https://grafana.com/grafana/dashboards/1860-node-exporter-full/)
-* 13332 [Kube State Metrics V2](https://grafana.com/grafana/dashboards/13332-kube-state-metrics-v2/)
 * 7362  [MySQL Overview](https://grafana.com/grafana/dashboards/7362-mysql-overview/)
-* 12483 [Kubernetes Kafka](https://grafana.com/grafana/dashboards/12483-kubernetes-kafka/)
+* ~~12483 [Kubernetes Kafka](https://grafana.com/grafana/dashboards/12483-kubernetes-kafka/)~~
+* 14656 [Kafka Dashboard](https://grafana.com/grafana/dashboards/14656-kafka-dashboard/)
+* 13332 [Kube State Metrics V2](https://grafana.com/grafana/dashboards/13332-kube-state-metrics-v2/)
 
 ## MySQL
 
@@ -137,6 +138,8 @@ To get your credentials run:
 
    export ROOT_USER=$(kubectl get secret --namespace infra bitnami-minio -o jsonpath="{.data.root-user}" | base64 -d)
    export ROOT_PASSWORD=$(kubectl get secret --namespace infra bitnami-minio -o jsonpath="{.data.root-password}" | base64 -d)
+   echo ${ROOT_USER}
+   echo ${ROOT_PASSWORD}
 
 To connect to your MinIO&reg; server using a client:
 
@@ -155,3 +158,5 @@ To access the MinIO&reg; web UI:
 
    echo "MinIO&reg; web URL: http://127.0.0.1:9001/minio"
    kubectl port-forward --namespace infra svc/bitnami-minio 9001:9001
+
+Web Url: `http://bitnami-minio.infra.svc.cluster.local:9001/login`

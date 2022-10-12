@@ -5,24 +5,27 @@ metadata:
   labels:
     strimzi.io/cluster: s3-sink-connect-cluster
 spec:
-  class: com.mongodb.kafka.connect.MongoSinkConnector
+  class: io.confluent.connect.s3.S3SinkConnector
   tasksMax: 2
   config:
-    connection.uri: "mongodb://root:${secrets:infra/bitnami-cosmos-shared-mongodb-sharded:mongodb-root-password}@bitnami-cosmos-shared-mongodb-sharded.infra.svc.cluster.local:27017"
+    bootstrap.servers: bitnami-kafka.infra.svc.cluster.local:9092
+    tasks.max: 1
     topics: db_world_v2,schema-changes.db_world_v2,db_world_v2.db_world.debezium_signal,db_world_v2.db_world.person_infos,db_world_v2.db_world.persons
-    database: kafka_topics_sink_v1
-    collection: default
-    # Topic override examples for the specifical topic
-    topic.override.db_world_v2.collection: db_world_v2
-    topic.override.schema-changes.db_world_v2.collection: schema-changes.db_world_v2
-    topic.override.db_world_v2.db_world.debezium_signal.collection: db_world_v2.db_world.debezium_signal
-    topic.override.db_world_v2.db_world.person_infos.collection: db_world_v2.db_world.person_infos
-    topic.override.db_world_v2.db_world.persons.collection: db_world_v2.db_world.persons
-    document.id.strategy: com.mongodb.kafka.connect.sink.processor.id.strategy.BsonOidStrategy
-    post.processor.chain: com.mongodb.kafka.connect.sink.processor.DocumentIdAdder
+    flush.size: 1
+    s3.bucket.name: confluent-kafka-connect-s3-testing
+    s3.part.size: 5242880
+    s3.region: us-east-1
+    store.url: http://bitnami-minio.infra.svc.cluster.local:9000
+    aws.access.key.id: QZmZFYL5aKqJF5zO
+    aws.secret.access.key: XXahIYjw5Qve2NabdEY2ZJuJSJpTHgTY
+    storage.class: io.confluent.connect.s3.storage.S3Storage
+    format.class: io.confluent.connect.s3.format.json.JsonFormat
     key.converter: org.apache.kafka.connect.json.JsonConverter
     key.converter.schemas.enable: false
     # org.apache.kafka.connect.storage.StringConverter
     value.converter: org.apache.kafka.connect.json.JsonConverter
     value.converter.schemas.enable: false
-    mongo.errors.tolerance: all
+    schema.generator.class: io.confluent.connect.storage.hive.schema.DefaultSchemaGenerator
+    partitioner.class: io.confluent.connect.storage.partitioner.DefaultPartitioner
+    schema.compatibility: NONE
+    store.kafka.keys: false
