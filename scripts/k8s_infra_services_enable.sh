@@ -130,3 +130,12 @@ helm upgrade --install bitnami-minio \
   --timeout 10m0s \
   --version 11.10.7 \
   bitnami/minio
+
+helm upgrade --install bitnami-clickhouse \
+  --namespace ${INFRA_NAMESPACE} \
+  --values ${WORKING_DIR}/configs/charts_values/clickhouse-values.yaml \
+  --set global.imageRegistry="docker.io${IMAGE_MIRROR_SUFFIX}" \
+  --wait \
+  --timeout 10m0s \
+  --version 1.0.0 \
+  bitnami/clickhouse

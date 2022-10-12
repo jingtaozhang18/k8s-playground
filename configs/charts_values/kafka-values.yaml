@@ -21,7 +21,7 @@ provisioning:
 
 zookeeper:
   enabled: true
-  replicaCount: 3
+  replicaCount: 2
   auth:
     client:
       enabled: false
