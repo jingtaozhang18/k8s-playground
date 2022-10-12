@@ -7,7 +7,7 @@ Refer to [Debezium Documentation / Operations / Running on Kubernetes](https://d
 Refer to [Operator QuickStart](https://olm.operatorframework.io/docs/getting-started/)
 
 ```bash
-operator-sdk olm install
+operator-sdk olm install --timeout 10m0s
 kubectl create -f https://operatorhub.io/install/strimzi-kafka-operator.yaml
 ```
 
