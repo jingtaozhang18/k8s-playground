@@ -129,7 +129,7 @@ To create a pod that you can use as a Kafka client run the following commands:
             --topic test \
             --from-beginning
 
-## Minio
+## MinIO
 
 MinIO&reg; can be accessed via port  on the following DNS name from within your cluster:
 
@@ -161,3 +161,16 @@ To access the MinIO&reg; web UI:
    kubectl port-forward --namespace infra svc/bitnami-minio 9001:9001
 
 Web Url: `http://bitnami-minio.infra.svc.cluster.local:9001/login`
+
+## ClickHouse
+
+ClickHouse is available in the following address:
+
+    kubectl port-forward --namespace infra svc/bitnami-clickhouse 9000:9000 &
+
+Credentials:
+
+    echo "Username      : default"
+    echo "Password      : $(kubectl get secret --namespace infra bitnami-clickhouse -o jsonpath="{.data.admin-password}" | base64 -d)"
+
+WEB UI: `http://bitnami-clickhouse.infra.svc.cluster.local:8123/play`

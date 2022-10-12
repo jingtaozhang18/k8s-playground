@@ -13,9 +13,11 @@ persistence:
 
 replicaCount: 2
 
-externalZookeeper:
-  servers: bitnami-kafka-zookeeper.infra.svc.cluster.local
-  ports: 2181
-
-zookeper:
-  enabled: false
+zookeeper:
+  enabled: true
+  replicaCount: 2
+  auth:
+    client:
+      enabled: false
+  persistence:
+    storageClass: standard
