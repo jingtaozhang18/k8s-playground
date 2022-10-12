@@ -11,7 +11,7 @@ spec:
     bootstrap.servers: bitnami-kafka.infra.svc.cluster.local:9092
     tasks.max: 1
     topics: db_world_v2,schema-changes.db_world_v2,db_world_v2.db_world.debezium_signal,db_world_v2.db_world.person_infos,db_world_v2.db_world.persons
-    flush.size: 1
+    flush.size: 10000
     s3.bucket.name: confluent-kafka-connect-s3-testing
     s3.part.size: 5242880
     s3.region: us-east-1
@@ -29,3 +29,4 @@ spec:
     partitioner.class: io.confluent.connect.storage.partitioner.DefaultPartitioner
     schema.compatibility: NONE
     store.kafka.keys: false
+    behavior.on.null.values: ignore
