@@ -1,0 +1,28 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaConnector
+metadata:
+  name: mongodb-sink-connector-multi-topics
+  labels:
+    strimzi.io/cluster: mongodb-sink-connect-cluster
+spec:
+  class: com.mongodb.kafka.connect.MongoSinkConnector
+  tasksMax: 2
+  config:
+    connection.uri: "mongodb://root:${secrets:infra/bitnami-cosmos-shared-mongodb-sharded:mongodb-root-password}@bitnami-cosmos-shared-mongodb-sharded.infra.svc.cluster.local:27017"
+    topics: db_world_v2,schema-changes.db_world_v2,db_world_v2.db_world.debezium_signal,db_world_v2.db_world.person_infos,db_world_v2.db_world.persons
+    database: kafka_topics_sink_v1
+    collection: default
+    # Topic override examples for the specifical topic
+    topic.override.db_world_v2.collection: db_world_v2
+    topic.override.schema-changes.db_world_v2.collection: schema-changes.db_world_v2
+    topic.override.db_world_v2.db_world.debezium_signal.collection: db_world_v2.db_world.debezium_signal
+    topic.override.db_world_v2.db_world.person_infos.collection: db_world_v2.db_world.person_infos
+    topic.override.db_world_v2.db_world.persons.collection: db_world_v2.db_world.persons
+    document.id.strategy: com.mongodb.kafka.connect.sink.processor.id.strategy.BsonOidStrategy
+    post.processor.chain: com.mongodb.kafka.connect.sink.processor.DocumentIdAdder
+    key.converter: org.apache.kafka.connect.json.JsonConverter
+    key.converter.schemas.enable: false
+    # org.apache.kafka.connect.storage.StringConverter
+    value.converter: org.apache.kafka.connect.json.JsonConverter
+    value.converter.schemas.enable: false
+    mongo.errors.tolerance: all

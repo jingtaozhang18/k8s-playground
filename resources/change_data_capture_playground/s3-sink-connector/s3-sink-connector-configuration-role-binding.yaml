@@ -1,0 +1,13 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: s3-sink-connector-configuration-role-binding
+  namespace: infra
+subjects:
+  - kind: ServiceAccount
+    name: s3-sink-connect-cluster-connect
+    namespace: infra
+roleRef:
+  kind: Role
+  name: s3-sink-connector-configuration-role
+  apiGroup: rbac.authorization.k8s.io
