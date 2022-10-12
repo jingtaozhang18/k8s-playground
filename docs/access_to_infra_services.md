@@ -56,14 +56,18 @@ Dashboard list:
 ## HDFS
 
 1. You can check the status of HDFS by running this command:
+
+```bash
    kubectl exec -n infra -it gradiant-hdfs-namenode-0 -- hdfs dfsadmin -report
+```
 
 2. Create a port-forward to the hdfs manager UI:
-   kubectl port-forward -n infra gradiant-hdfs-namenode-0 50070:50070
 
-   Then open the ui in your browser:
-   
-   open http://localhost:50070
+```bash
+   kubectl port-forward -n infra gradiant-hdfs-namenode-0 50070:50070
+```
+
+   Then open the ui in your browser, open http://localhost:50070
 
 Web URL: `http://gradiant-hdfs-namenode.infra.svc.cluster.local:50070`
 
@@ -110,13 +114,17 @@ Connection String
 
 Kafka can be accessed by consumers via port 9092 on the following DNS name from within your cluster:
 
+```bash
     bitnami-kafka.infra.svc.cluster.local
+```
 
 Each Kafka broker can be accessed by producers via port 9092 on the following DNS name(s) from within your cluster:
 
+```bash
     bitnami-kafka-0.bitnami-kafka-headless.infra.svc.cluster.local:9092
     bitnami-kafka-1.bitnami-kafka-headless.infra.svc.cluster.local:9092
     bitnami-kafka-2.bitnami-kafka-headless.infra.svc.cluster.local:9092
+```
 
 To create a pod that you can use as a Kafka client run the following commands:
 
