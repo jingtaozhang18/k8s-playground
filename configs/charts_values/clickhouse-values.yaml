@@ -1,0 +1,21 @@
+metrics:
+  enabled: true
+  serviceMonitor:
+    enabled: true # Create ServiceMonitor Resource for scraping metrics using PrometheusOperator
+    namespace: infra
+    honorLabels: true
+    interval: 5s
+
+persistence:
+  enabled: true
+  storageClass: standard
+  size: 100Gi
+
+replicaCount: 2
+
+externalZookeeper:
+  servers: bitnami-kafka-zookeeper.infra.svc.cluster.local
+  ports: 2181
+
+zookeper:
+  enabled: false
