@@ -7,4 +7,4 @@ persistence:
     storageClass: standard
 
 dataNode:
-  replicas: 3
+  replicas: 2

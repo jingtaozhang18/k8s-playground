@@ -18,7 +18,7 @@ primary:
     initialDelaySeconds: 20
 
 secondary:
-  replicaCount: 2
+  replicaCount: 1
   persistence:
     enabled: true
     storageClass: standard

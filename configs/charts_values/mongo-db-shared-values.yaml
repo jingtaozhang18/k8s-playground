@@ -2,19 +2,19 @@ global:
   storageClass: standard
 
 configsvr:
-  replicaCount: 3
+  replicaCount: 2
   persistence:
     enabled: true
     storageClass: standard
 
 mongos:
-  replicaCount: 3
+  replicaCount: 2
 
 shardsvr:
   persistence:
     storageClass: standard
   dataNode:
-    replicaCount: 3
+    replicaCount: 2
 
 metrics:
   enabled: true # Start a side-car prometheus exporter
