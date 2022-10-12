@@ -21,9 +21,9 @@ Proxy Tools:
 Check user name and passwd, and forword port.
 
 ```bash
-echo "User Name: $(kubectl get secret --namespace infra grafana-admin-credentials -o jsonpath="{.data.GF_SECURITY_ADMIN_USER}" | base64 -d)"
-echo "User Passwd: $(kubectl get secret --namespace infra grafana-admin-credentials -o jsonpath="{.data.GF_SECURITY_ADMIN_PASSWORD}" | base64 -d)"
-kubectl port-forward services/grafana-service 3000:3000 -n infra &
+   echo "User Name: $(kubectl get secret --namespace infra grafana-admin-credentials -o jsonpath="{.data.GF_SECURITY_ADMIN_USER}" | base64 -d)"
+   echo "User Passwd: $(kubectl get secret --namespace infra grafana-admin-credentials -o jsonpath="{.data.GF_SECURITY_ADMIN_PASSWORD}" | base64 -d)"
+   kubectl port-forward services/grafana-service 3000:3000 -n infra &
 ```
 
 Grafana URL: `http://grafana-service.infra.svc.cluster.local:3000`
@@ -43,14 +43,14 @@ Dashboard list:
 ## MySQL
 
 ```bash
-# Get passwd of root
-MYSQL_ROOT_PASSWORD=$(kubectl get secret --namespace infra bitnami-mysql -o jsonpath="{.data.mysql-root-password}" | base64 -d)
-# Run a pod that you can use as a client:
-kubectl run bitnami-mysql-client --rm --tty -i --restart='Never' --image  docker.io.registry.jingtao.fun/bitnami/mysql:8.0.30-debian-11-r15 --namespace infra --env MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD --command -- bash
-# To connect to primary service (read/write):
-mysql -h bitnami-mysql-primary.infra.svc.cluster.local -uroot -p"$MYSQL_ROOT_PASSWORD"
-# To connect to secondary service (read-only):
-mysql -h bitnami-mysql-secondary.infra.svc.cluster.local -uroot -p"$MYSQL_ROOT_PASSWORD"
+   # Get passwd of root
+   MYSQL_ROOT_PASSWORD=$(kubectl get secret --namespace infra bitnami-mysql -o jsonpath="{.data.mysql-root-password}" | base64 -d)
+   # Run a pod that you can use as a client:
+   kubectl run bitnami-mysql-client --rm --tty -i --restart='Never' --image  docker.io.registry.jingtao.fun/bitnami/mysql:8.0.30-debian-11-r15 --namespace infra --env MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD --command -- bash
+   # To connect to primary service (read/write):
+   mysql -h bitnami-mysql-primary.infra.svc.cluster.local -uroot -p"$MYSQL_ROOT_PASSWORD"
+   # To connect to secondary service (read-only):
+   mysql -h bitnami-mysql-secondary.infra.svc.cluster.local -uroot -p"$MYSQL_ROOT_PASSWORD"
 ```
 
 ## HDFS
@@ -71,8 +71,10 @@ Web URL: `http://gradiant-hdfs-namenode.infra.svc.cluster.local:50070`
 
 1. Get the Spark master WebUI URL by running these commands:
 
+```bash
   kubectl port-forward --namespace infra svc/bitnami-spark-master-svc 80:80
   echo "Visit http://127.0.0.1:80 to use your application"
+```
 
 2. Submit an application to the cluster:
 
