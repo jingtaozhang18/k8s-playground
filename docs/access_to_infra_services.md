@@ -79,11 +79,13 @@ Web URL: `http://gradiant-hdfs-namenode.infra.svc.cluster.local:50070`
   To submit an application to the cluster the spark-submit script must be used. That script can be
   obtained at https://github.com/apache/spark/tree/master/bin. Also you can use kubectl run.
 
-  export EXAMPLE_JAR=$(kubectl exec -ti --namespace infra bitnami-spark-worker-0 -- find examples/jars/ -name 'spark-example*\.jar' | tr -d '\r')
+```bash
+   export EXAMPLE_JAR=$(kubectl exec -ti --namespace infra bitnami-spark-worker-0 -- find examples/jars/ -name 'spark-example*\.jar' | tr -d '\r')
 
-  kubectl exec -ti --namespace infra bitnami-spark-worker-0 -- spark-submit --master spark://bitnami-spark-master-svc:7077 \
-    --class org.apache.spark.examples.SparkPi \
-    $EXAMPLE_JAR 5
+   kubectl exec -ti --namespace infra bitnami-spark-worker-0 -- spark-submit --master spark://bitnami-spark-master-svc:7077 \
+      --class org.apache.spark.examples.SparkPi \
+      $EXAMPLE_JAR 5
+```
 
 ** IMPORTANT: When submit an application from outside the cluster service type should be set to the NodePort or LoadBalancer. **
 
@@ -93,13 +95,13 @@ Web URL: `http://gradiant-hdfs-namenode.infra.svc.cluster.local:50070`
 ## MongoDB
 
 ```bash
-export MONGODB_ROOT_PASSWORD=$(kubectl get secret --namespace infra bitnami-cosmos-shared-mongodb-sharded -o jsonpath="{.data.mongodb-root-password}" | base64 -d)
+   export MONGODB_ROOT_PASSWORD=$(kubectl get secret --namespace infra bitnami-cosmos-shared-mongodb-sharded -o jsonpath="{.data.mongodb-root-password}" | base64 -d)
 ```
 
 Connection String
 
 ```bash
-echo "mongodb://root:${MONGODB_ROOT_PASSWORD}@bitnami-cosmos-shared-mongodb-sharded.infra.svc.cluster.local:27017/?authSource=admin&readPreference=primary&ssl=false"
+   echo "mongodb://root:${MONGODB_ROOT_PASSWORD}@bitnami-cosmos-shared-mongodb-sharded.infra.svc.cluster.local:27017/?authSource=admin&readPreference=primary&ssl=false"
 ```
 
 ## Kafka
@@ -117,23 +119,23 @@ Each Kafka broker can be accessed by producers via port 9092 on the following DN
 To create a pod that you can use as a Kafka client run the following commands:
 
 ```bash
-kubectl run bitnami-kafka-client --restart='Never' --image docker.io.registry.jingtao.fun/bitnami/kafka:3.2.3-debian-11-r1 --namespace infra --command -- sleep infinity
-kubectl exec --tty -i bitnami-kafka-client --namespace infra -- bash
+   kubectl run bitnami-kafka-client --restart='Never' --image docker.io.registry.jingtao.fun/bitnami/kafka:3.2.3-debian-11-r1 --namespace infra --command -- sleep infinity
+   kubectl exec --tty -i bitnami-kafka-client --namespace infra -- bash
 ```
 
 ```bash
-# PRODUCER:
-kafka-console-producer.sh \
-   --broker-list bitnami-kafka-0.bitnami-kafka-headless.infra.svc.cluster.local:9092,bitnami-kafka-1.bitnami-kafka-headless.infra.svc.cluster.local:9092,bitnami-kafka-2.bitnami-kafka-headless.infra.svc.cluster.local:9092 \
-   --topic test
+   # PRODUCER:
+   kafka-console-producer.sh \
+      --broker-list bitnami-kafka-0.bitnami-kafka-headless.infra.svc.cluster.local:9092,bitnami-kafka-1.bitnami-kafka-headless.infra.svc.cluster.local:9092,bitnami-kafka-2.bitnami-kafka-headless.infra.svc.cluster.local:9092 \
+      --topic test
 ```
 
 ```bash
-# CONSUMER:
-kafka-console-consumer.sh \
-   --bootstrap-server bitnami-kafka.infra.svc.cluster.local:9092 \
-   --topic test \
-   --from-beginning
+   # CONSUMER:
+   kafka-console-consumer.sh \
+      --bootstrap-server bitnami-kafka.infra.svc.cluster.local:9092 \
+      --topic test \
+      --from-beginning
 ```
 
 ## MinIO
