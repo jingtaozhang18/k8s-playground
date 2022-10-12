@@ -24,7 +24,7 @@ minikube version
 PROFILE_NAME='playground'
 SOFT_ROUTE_IP='192.168.1.41'
 KVM_NETWORK='nat-network'
-NODE_NUM=4
+NODE_NUM=3
 # bash ${WORKING_DIR}/scripts/k8s_set_route.sh ${PROFILE_NAME} ${NODE_NUM} ${SOFT_ROUTE_IP} &
 # export HTTP_PROXY=http://${SOFT_ROUTE_IP}:1080
 # export HTTPS_PROXY=https://${SOFT_ROUTE_IP}:1080
@@ -37,8 +37,8 @@ minikube \
   --kubernetes-version='v1.24.3' \
   --auto-update-drivers=false \
   --nodes=${NODE_NUM} \
-  --cpus=6 \
-  --memory=12g \
+  --cpus=8 \
+  --memory=18g \
   --disk-size=40g \
   --kvm-network="${KVM_NETWORK}" \
   --image-mirror-country='cn' \
