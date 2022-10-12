@@ -37,6 +37,7 @@ Dashboard list:
 * 13502 [MinIO Dashboard](https://grafana.com/grafana/dashboards/13502-minio-dashboard/)
   * select `bitnami-minio` for **scrape_jobs**
 * 14656 [Kafka Dashboard](https://grafana.com/grafana/dashboards/14656-kafka-dashboard/)
+* 14192 [ClickHouse](https://grafana.com/grafana/dashboards/14192-clickhouse/)
 * 13332 [Kube State Metrics V2](https://grafana.com/grafana/dashboards/13332-kube-state-metrics-v2/)
 
 ## MySQL
@@ -174,3 +175,4 @@ Credentials:
     echo "Password      : $(kubectl get secret --namespace infra bitnami-clickhouse -o jsonpath="{.data.admin-password}" | base64 -d)"
 
 WEB UI: `http://bitnami-clickhouse.infra.svc.cluster.local:8123/play`
+For more please refer to [ClickHouse HTTP Interface](https://clickhouse.com/docs/en/interfaces/http/)
