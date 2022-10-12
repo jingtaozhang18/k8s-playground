@@ -34,7 +34,7 @@ Dashboard list:
 
 * 1860  [Node Exporter Full](https://grafana.com/grafana/dashboards/1860-node-exporter-full/)
 * 7362  [MySQL Overview](https://grafana.com/grafana/dashboards/7362-mysql-overview/)
-* ~~12483 [Kubernetes Kafka](https://grafana.com/grafana/dashboards/12483-kubernetes-kafka/)~~
+* 13502 [MinIO Dashboard](https://grafana.com/grafana/dashboards/13502-minio-dashboard/)
 * 14656 [Kafka Dashboard](https://grafana.com/grafana/dashboards/14656-kafka-dashboard/)
 * 13332 [Kube State Metrics V2](https://grafana.com/grafana/dashboards/13332-kube-state-metrics-v2/)
 
