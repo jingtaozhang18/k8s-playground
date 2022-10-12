@@ -80,6 +80,8 @@ Web URL: `http://gradiant-hdfs-namenode.infra.svc.cluster.local:50070`
   echo "Visit http://127.0.0.1:80 to use your application"
 ```
 
+Web UI: `http://bitnami-spark-master-svc.infra.svc.cluster.local:80/`
+
 2. Submit an application to the cluster:
 
   To submit an application to the cluster the spark-submit script must be used. That script can be
