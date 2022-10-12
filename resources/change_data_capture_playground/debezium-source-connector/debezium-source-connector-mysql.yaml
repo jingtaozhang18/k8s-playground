@@ -9,7 +9,7 @@ spec:
   tasksMax: 1
   config:
     tasks.max: 1
-    database.hostname: bitnami-mysql-primary.infra.svc.cluster.local
+    database.hostname: bitnami-mysql-secondary.infra.svc.cluster.local
     database.port: 3306
     database.user: root
     database.password: ${secrets:infra/bitnami-mysql:mysql-replication-password}
