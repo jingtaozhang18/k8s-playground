@@ -34,4 +34,3 @@ kubectl delete Role debezium-source-connector-configuration-role
 * [Debezium Documentation / Operations / Running on Kubernetes](https://debezium.io/documentation/reference/stable/operations/kubernetes.html#_creating_kafka_connect_cluster)
 * [Operator Install](https://sdk.operatorframework.io/docs/installation/)
 * [Operator QuickStart](https://olm.operatorframework.io/docs/getting-started/)
-
