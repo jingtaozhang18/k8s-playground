@@ -6,5 +6,5 @@ metadata:
 rules:
   - apiGroups: [""]
     resources: ["secrets"]
-    resourceNames: ["bitnami-cosmos-shared-mongodb-sharded"]
+    resourceNames: ["bitnami-minio"]
     verbs: ["get"]

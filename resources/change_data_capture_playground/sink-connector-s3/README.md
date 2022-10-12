@@ -15,13 +15,13 @@ kubectl create -f https://operatorhub.io/install/strimzi-kafka-operator.yaml
 kubectl apply -f s3-sink-connector-configuration-role.yaml # Role 
 kubectl apply -f s3-sink-connector-configuration-role-binding.yaml # RoleBinding
 kubectl apply -n infra -f s3-sink-connect-cluster.yaml # KafkaConnect
-kubectl apply -n infra -f s3-sink-connector-multi-topics.yaml # KafkaConnector running on KafkaConnect
+kubectl apply -n infra -f s3-sink-connector.yaml # KafkaConnector running on KafkaConnect
 ```
 
 ## Destroy Resource
 
 ```bash
-kubectl delete -n infra KafkaConnector s3-sink-connector-multi-topics
+kubectl delete -n infra KafkaConnector s3-sink-connector
 kubectl delete -n infra KafkaConnect s3-sink-connect-cluster
 kubectl delete RoleBinding s3-sink-connector-configuration-role-binding
 kubectl delete Role s3-sink-connector-configuration-role

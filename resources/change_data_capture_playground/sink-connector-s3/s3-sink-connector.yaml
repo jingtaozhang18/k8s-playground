@@ -1,9 +1,9 @@
 apiVersion: kafka.strimzi.io/v1beta2
 kind: KafkaConnector
 metadata:
-  name: mongodb-sink-connector-multi-topics
+  name: s3-sink-connector
   labels:
-    strimzi.io/cluster: mongodb-sink-connect-cluster
+    strimzi.io/cluster: s3-sink-connect-cluster
 spec:
   class: com.mongodb.kafka.connect.MongoSinkConnector
   tasksMax: 2
