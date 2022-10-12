@@ -116,19 +116,27 @@ Each Kafka broker can be accessed by producers via port 9092 on the following DN
 
 To create a pod that you can use as a Kafka client run the following commands:
 
+```bash
     kubectl run bitnami-kafka-client --restart='Never' --image docker.io.registry.jingtao.fun/bitnami/kafka:3.2.3-debian-11-r1 --namespace infra --command -- sleep infinity
     kubectl exec --tty -i bitnami-kafka-client --namespace infra -- bash
+```
 
     PRODUCER:
+
+```bash
         kafka-console-producer.sh \
             --broker-list bitnami-kafka-0.bitnami-kafka-headless.infra.svc.cluster.local:9092,bitnami-kafka-1.bitnami-kafka-headless.infra.svc.cluster.local:9092,bitnami-kafka-2.bitnami-kafka-headless.infra.svc.cluster.local:9092 \
             --topic test
+```
 
     CONSUMER:
+
+```bash
         kafka-console-consumer.sh \
             --bootstrap-server bitnami-kafka.infra.svc.cluster.local:9092 \
             --topic test \
             --from-beginning
+```
 
 ## MinIO
 
@@ -138,28 +146,34 @@ MinIO&reg; can be accessed via port  on the following DNS name from within your 
 
 To get your credentials run:
 
+```bash
    export ROOT_USER=$(kubectl get secret --namespace infra bitnami-minio -o jsonpath="{.data.root-user}" | base64 -d)
    export ROOT_PASSWORD=$(kubectl get secret --namespace infra bitnami-minio -o jsonpath="{.data.root-password}" | base64 -d)
    echo ${ROOT_USER}
    echo ${ROOT_PASSWORD}
+```
 
 To connect to your MinIO&reg; server using a client:
 
 - Run a MinIO&reg; Client pod and append the desired command (e.g. 'admin info'):
 
+```bash
    kubectl run --namespace infra bitnami-minio-client \
      --rm --tty -i --restart='Never' \
      --env MINIO_SERVER_ROOT_USER=$ROOT_USER \
      --env MINIO_SERVER_ROOT_PASSWORD=$ROOT_PASSWORD \
      --env MINIO_SERVER_HOST=bitnami-minio \
      --image docker.io.registry.jingtao.fun/bitnami/minio-client:2022.10.6-debian-11-r1 -- admin info minio
+```
 
 To access the MinIO&reg; web UI:
 
 - Get the MinIO&reg; URL:
 
+```bash
    echo "MinIO&reg; web URL: http://127.0.0.1:9001/minio"
    kubectl port-forward --namespace infra svc/bitnami-minio 9001:9001
+```
 
 Web Url: `http://bitnami-minio.infra.svc.cluster.local:9001/login`
 
@@ -167,12 +181,16 @@ Web Url: `http://bitnami-minio.infra.svc.cluster.local:9001/login`
 
 ClickHouse is available in the following address:
 
+```bash
     kubectl port-forward --namespace infra svc/bitnami-clickhouse 9000:9000 &
+```
 
 Credentials:
 
+```bash
     echo "Username      : default"
     echo "Password      : $(kubectl get secret --namespace infra bitnami-clickhouse -o jsonpath="{.data.admin-password}" | base64 -d)"
+```
 
 WEB UI: `http://bitnami-clickhouse.infra.svc.cluster.local:8123/play`
 For more please refer to [ClickHouse HTTP Interface](https://clickhouse.com/docs/en/interfaces/http/)
