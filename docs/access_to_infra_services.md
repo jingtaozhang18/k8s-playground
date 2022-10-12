@@ -117,25 +117,23 @@ Each Kafka broker can be accessed by producers via port 9092 on the following DN
 To create a pod that you can use as a Kafka client run the following commands:
 
 ```bash
-    kubectl run bitnami-kafka-client --restart='Never' --image docker.io.registry.jingtao.fun/bitnami/kafka:3.2.3-debian-11-r1 --namespace infra --command -- sleep infinity
-    kubectl exec --tty -i bitnami-kafka-client --namespace infra -- bash
+kubectl run bitnami-kafka-client --restart='Never' --image docker.io.registry.jingtao.fun/bitnami/kafka:3.2.3-debian-11-r1 --namespace infra --command -- sleep infinity
+kubectl exec --tty -i bitnami-kafka-client --namespace infra -- bash
 ```
 
-    PRODUCER:
-
 ```bash
-        kafka-console-producer.sh \
-            --broker-list bitnami-kafka-0.bitnami-kafka-headless.infra.svc.cluster.local:9092,bitnami-kafka-1.bitnami-kafka-headless.infra.svc.cluster.local:9092,bitnami-kafka-2.bitnami-kafka-headless.infra.svc.cluster.local:9092 \
-            --topic test
+# PRODUCER:
+kafka-console-producer.sh \
+   --broker-list bitnami-kafka-0.bitnami-kafka-headless.infra.svc.cluster.local:9092,bitnami-kafka-1.bitnami-kafka-headless.infra.svc.cluster.local:9092,bitnami-kafka-2.bitnami-kafka-headless.infra.svc.cluster.local:9092 \
+   --topic test
 ```
 
-    CONSUMER:
-
 ```bash
-        kafka-console-consumer.sh \
-            --bootstrap-server bitnami-kafka.infra.svc.cluster.local:9092 \
-            --topic test \
-            --from-beginning
+# CONSUMER:
+kafka-console-consumer.sh \
+   --bootstrap-server bitnami-kafka.infra.svc.cluster.local:9092 \
+   --topic test \
+   --from-beginning
 ```
 
 ## MinIO
