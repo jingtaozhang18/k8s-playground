@@ -8,9 +8,11 @@
 
 Refer [simulate-mysql-op](./simulate-mysql-op) for simulating concurrent operation on MySQL.
 
-Refer [debezium-source-connector](./debezium-source-connector) for capturing change data from MySQL to Kafka.
+Refer [source-connector-debezium](./source-connector-debezium) for capturing change data from MySQL to Kafka.
 
-Refer [mongodb-sink-connector](./mongodb-sink-connector) for sinking data from Kafka to MongoDB.
+Refer [sink-connector-mongodb](./sink-connector-mongodb) for sinking data from Kafka to MongoDB.
+
+Refer [sink-connector-s3](./sink-connector-s3) for sinking all existing data of all topics into MINIO.
 
 Refer [sink-kafka2hdfs](./sink-kafka2hdfs) for sinking all existing data of all topics into hdfs.
 
@@ -19,4 +21,5 @@ Refer [sink-kafka2hdfs](./sink-kafka2hdfs) for sinking all existing data of all 
 * Initial MySQL Database: Run simulate-mysql-op/database_initial
 * Deploy Debezium Source Connector
 * Deploy MongoDB Sink Connector
+* Deploy S3 Sink Connector
 * Concurrent Operation on MySQL: Run simulate-mysql-op/concurrency_op
