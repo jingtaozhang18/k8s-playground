@@ -98,7 +98,7 @@ helm upgrade --install bitnami-spark \
   --set global.imageRegistry="docker.io${IMAGE_MIRROR_SUFFIX}" \
   --wait \
   --timeout 10m0s \
-  --version 6.3.4 \
+  --version 6.3.6 \
   bitnami/spark
 
 helm upgrade --install bitnami-cosmos-shared \
@@ -107,7 +107,7 @@ helm upgrade --install bitnami-cosmos-shared \
   --set global.imageRegistry="docker.io${IMAGE_MIRROR_SUFFIX}" \
   --wait \
   --timeout 10m0s \
-  --version 6.1.3 \
+  --version 6.1.6 \
   bitnami/mongodb-sharded
 
 mkdir -p ${WORKING_DIR}/charts

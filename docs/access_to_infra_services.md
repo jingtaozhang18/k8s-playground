@@ -16,6 +16,58 @@ Proxy Tools:
   kubectl krew install socks5-proxy
   ```
 
+## Promethus
+
+Watch the Prometheus Operator Deployment status using the command:
+
+```bash
+    kubectl get deploy -w --namespace infra -l app.kubernetes.io/name=kube-prometheus,app.kubernetes.io/instance=bitnami-kube-prometheus
+```
+
+Watch the Prometheus StatefulSet status using the command:
+
+```bash
+    kubectl get sts -w --namespace infra -l app.kubernetes.io/name=kube-prometheus,app.kubernetes.io/instance=bitnami-kube-prometheus
+```
+
+Prometheus can be accessed via port "9090" on the following DNS name from within your cluster:
+
+```bash
+    bitnami-kube-prometheus-prometheus.infra.svc.cluster.local
+```
+
+To access Prometheus from outside the cluster execute the following commands:
+
+```bash
+    echo "Prometheus URL: http://127.0.0.1:9090/"
+    kubectl port-forward --namespace infra svc/bitnami-kube-prometheus-prometheus 9090:9090
+```
+
+Thanos Sidecar can be accessed via port "10901" on the following DNS name from within your cluster:
+
+```bash
+    bitnami-kube-prometheus-prometheus-thanos.infra.svc.cluster.local
+```
+
+Watch the Alertmanager StatefulSet status using the command:
+
+```bash
+    kubectl get sts -w --namespace infra -l app.kubernetes.io/name=kube-prometheus-alertmanager,app.kubernetes.io/instance=bitnami-kube-prometheus
+```
+
+Alertmanager can be accessed via port "9093" on the following DNS name from within your cluster:
+
+```bash
+    bitnami-kube-prometheus-alertmanager.infra.svc.cluster.local
+```
+
+To access Alertmanager from outside the cluster execute the following commands:
+
+```bash
+    echo "Alertmanager URL: http://127.0.0.1:9093/"
+    kubectl port-forward --namespace infra svc/bitnami-kube-prometheus-alertmanager 9093:9093
+```
+
 ## Grafana
 
 Check user name and passwd, and forword port.
