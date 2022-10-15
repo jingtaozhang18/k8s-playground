@@ -1,9 +1,9 @@
 apiVersion: kafka.strimzi.io/v1beta2
 kind: KafkaConnector
 metadata:
-  name: s3-sink-connector
+  name: sink-connector-s3
   labels:
-    strimzi.io/cluster: s3-sink-connect-cluster
+    strimzi.io/cluster: sink-connect-cluster
 spec:
   class: io.confluent.connect.s3.S3SinkConnector
   tasksMax: 2

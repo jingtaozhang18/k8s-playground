@@ -1,10 +1,10 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  name: s3-sink-connector-configuration-role
+  name: source-connector-configuration-role
   namespace: infra
 rules:
   - apiGroups: [""]
     resources: ["secrets"]
-    resourceNames: ["bitnami-minio"]
+    resourceNames: ["bitnami-mysql"]
     verbs: ["get"]

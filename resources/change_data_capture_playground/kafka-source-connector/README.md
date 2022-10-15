@@ -1,4 +1,4 @@
-# Deploy Debezium Connector
+# Kafka Source Connector
 
 Refer to [Debezium Documentation / Operations / Running on Kubernetes](https://debezium.io/documentation/reference/stable/operations/kubernetes.html#_creating_kafka_connect_cluster)
 
@@ -14,19 +14,19 @@ kubectl create -f https://operatorhub.io/install/strimzi-kafka-operator.yaml
 ## Deploy Resource
 
 ```bash
-kubectl apply -f debezium-source-connector-configuration-role.yaml # Role 
-kubectl apply -f debezium-source-connector-configuration-role-binding.yaml # RoleBinding
-kubectl apply -n infra -f debezium-source-connect-cluster.yaml # KafkaConnect
-kubectl apply -n infra -f debezium-source-connector-mysql.yaml # KafkaConnector running on KafkaConnect
+kubectl apply -f source-connector-configuration-role.yaml # Role 
+kubectl apply -f source-connector-configuration-role-binding.yaml # RoleBinding
+kubectl apply -n infra -f source-connect-cluster.yaml # KafkaConnect
+kubectl apply -n infra -f source-connector-mysql.yaml # Debezium Source KafkaConnector running on KafkaConnect
 ```
 
 ## Destroy Resource
 
 ```bash
-kubectl delete -n infra KafkaConnector debezium-source-connector-mysql
-kubectl delete -n infra KafkaConnect debezium-source-connect-cluster
-kubectl delete RoleBinding debezium-source-connector-configuration-role-binding
-kubectl delete Role debezium-source-connector-configuration-role
+kubectl delete -n infra KafkaConnector source-connector-mysql
+kubectl delete -n infra KafkaConnect source-connect-cluster
+kubectl delete RoleBinding source-connector-configuration-role-binding
+kubectl delete Role source-connector-configuration-role
 ```
 
 # Refer
