@@ -8,7 +8,7 @@
 
 Refer [simulate-mysql-op](./simulate-mysql-op) for simulating concurrent operation on MySQL.
 
-Refer [kafka-source-connector](./kafka-source-connector) for capturing change data from MySQL to Kafka.
+Refer [kafka-source-connectors](./kafka-source-connectors) for capturing change data from MySQL to Kafka.
 
 Refer [kafka-sink-connectors](./kafka-sink-connectors) for sinking data from Kafka to MongoDB and S3(MinIO)
 
