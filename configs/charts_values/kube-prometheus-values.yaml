@@ -5,8 +5,6 @@ prometheus:
   replicaCount: 2
   podMonitorNamespaceSelector: # leave empty to select all.
   serviceMonitorNamespaceSelector: # leave empty to select all.
-    
-
   thanos:
     create: true
 
@@ -15,10 +13,6 @@ operator:
   serviceMonitor:
     enabled: true
     interval: 5s
-  podAnnotations:
-    prometheus.io/scrape: "true"
-    prometheus.io/path: "/metrics/cluster"
-    prometheus.io/port: "9000"
 
 alertmanager:
   persistence:
