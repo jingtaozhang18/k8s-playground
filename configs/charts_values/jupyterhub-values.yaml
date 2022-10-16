@@ -3,8 +3,10 @@ singleuser:
     enabled: true
     storageClass: standard
     size: 10Gi
+  notebookDir: /opt/bitnami/jupyterhub-singleuser
 
 hub:
+  password: nopasswd
   metrics:
     serviceMonitor:
       enabled: true
