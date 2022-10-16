@@ -141,7 +141,7 @@ helm upgrade --install bitnami-clickhouse \
   --version 1.0.0 \
   bitnami/clickhouse
 
-helm upgrade --install jupyterhub-datascience-v1 \
+helm upgrade --install jupyterhub-datascience-v2 \
   --namespace ${INFRA_NAMESPACE} \
   --values ${WORKING_DIR}/configs/charts_values/jupyterhub-values.yaml \
   --set global.imageRegistry="docker.io${IMAGE_MIRROR_SUFFIX}" \

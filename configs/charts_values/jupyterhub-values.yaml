@@ -19,7 +19,7 @@ singleuser:
   # memory:
   #   limit: 5G
   #   guarantee: 2.5G
-  defaultUrl: "/spark-lab"
+  defaultUrl: "/lab"
   storage:
     type: dynamic
     dynamic:
