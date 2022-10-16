@@ -1,13 +1,13 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: mongodb-sink-connector-configuration-role-binding
+  name: source-connector-configuration-role-binding
   namespace: infra
 subjects:
   - kind: ServiceAccount
-    name: mongodb-sink-connect-cluster-connect
+    name: source-connect-cluster-connect
     namespace: infra
 roleRef:
   kind: Role
-  name: mongodb-sink-connector-configuration-role
+  name: source-connector-configuration-role
   apiGroup: rbac.authorization.k8s.io

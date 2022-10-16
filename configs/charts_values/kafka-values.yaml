@@ -9,11 +9,11 @@ auth:
   clientProtocol: plaintext
   interBrokerProtocol: plaintext
 
-replicaCount: 3
+replicaCount: 2
 
-defaultReplicationFactor: 1
-offsetsTopicReplicationFactor: 1
-transactionStateLogReplicationFactor: 1
+defaultReplicationFactor: 2
+offsetsTopicReplicationFactor: 2
+transactionStateLogReplicationFactor: 2
 
 provisioning:
   enabled: true
@@ -21,7 +21,7 @@ provisioning:
 
 zookeeper:
   enabled: true
-  replicaCount: 3
+  replicaCount: 2
   auth:
     client:
       enabled: false

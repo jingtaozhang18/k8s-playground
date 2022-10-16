@@ -40,7 +40,7 @@ helm upgrade --install nfs-subdir-external-provisioner \
   --set nfs.server=${BR0_IP} \
   --set image.repository="k8s.gcr.io${IMAGE_MIRROR_SUFFIX}/sig-storage/nfs-subdir-external-provisioner" \
   --wait \
-  --timeout 10m0s \
+  --timeout 60m0s \
   nfs-subdir-external-provisioner/nfs-subdir-external-provisioner
 
 
@@ -52,7 +52,7 @@ helm upgrade --install bitnami-kube-prometheus \
   --values ${WORKING_DIR}/configs/charts_values/kube-prometheus-values.yaml \
   --set global.imageRegistry="docker.io${IMAGE_MIRROR_SUFFIX}" \
   --wait \
-  --timeout 10m0s \
+  --timeout 60m0s \
   --version 8.1.9 \
   bitnami/kube-prometheus
 
@@ -61,7 +61,7 @@ helm upgrade --install bitnami-kube-state-metrics \
   --values ${WORKING_DIR}/configs/charts_values/kube-state-metrics-values.yaml \
   --set global.imageRegistry="docker.io${IMAGE_MIRROR_SUFFIX}" \
   --wait \
-  --timeout 10m0s \
+  --timeout 60m0s \
   --version 3.2.3 \
   bitnami/kube-state-metrics
 
@@ -70,7 +70,7 @@ helm upgrade --install bitnami-grafana-operator \
   --values ${WORKING_DIR}/configs/charts_values/grafana-operator-values.yaml \
   --set global.imageRegistry="docker.io${IMAGE_MIRROR_SUFFIX}" \
   --wait \
-  --timeout 10m0s \
+  --timeout 60m0s \
   --version 2.7.4 \
   bitnami/grafana-operator
 
@@ -79,7 +79,7 @@ helm upgrade --install bitnami-mysql \
   --values ${WORKING_DIR}/configs/charts_values/mysql-values.yaml \
   --set global.imageRegistry="docker.io${IMAGE_MIRROR_SUFFIX}" \
   --wait \
-  --timeout 10m0s \
+  --timeout 60m0s \
   --version 9.3.4 \
   bitnami/mysql
 
@@ -88,7 +88,7 @@ helm upgrade --install bitnami-kafka \
   --values ${WORKING_DIR}/configs/charts_values/kafka-values.yaml \
   --set global.imageRegistry="docker.io${IMAGE_MIRROR_SUFFIX}" \
   --wait \
-  --timeout 10m0s \
+  --timeout 60m0s \
   --version 18.4.4 \
   bitnami/kafka
 
@@ -97,8 +97,8 @@ helm upgrade --install bitnami-spark \
   --values ${WORKING_DIR}/configs/charts_values/spark-values.yaml \
   --set global.imageRegistry="docker.io${IMAGE_MIRROR_SUFFIX}" \
   --wait \
-  --timeout 10m0s \
-  --version 6.3.4 \
+  --timeout 60m0s \
+  --version 6.3.6 \
   bitnami/spark
 
 helm upgrade --install bitnami-cosmos-shared \
@@ -106,8 +106,8 @@ helm upgrade --install bitnami-cosmos-shared \
   --values ${WORKING_DIR}/configs/charts_values/mongo-db-shared-values.yaml \
   --set global.imageRegistry="docker.io${IMAGE_MIRROR_SUFFIX}" \
   --wait \
-  --timeout 10m0s \
-  --version 6.1.3 \
+  --timeout 60m0s \
+  --version 6.1.6 \
   bitnami/mongodb-sharded
 
 mkdir -p ${WORKING_DIR}/charts
@@ -119,5 +119,23 @@ helm upgrade --install gradiant-hdfs \
   --namespace ${INFRA_NAMESPACE} \
   --values ${WORKING_DIR}/configs/charts_values/gradiant-hdfs-values.yaml \
   --wait \
-  --timeout 10m0s \
+  --timeout 60m0s \
   ${CHARTS_DIR}/charts/hdfs
+
+helm upgrade --install bitnami-minio \
+  --namespace ${INFRA_NAMESPACE} \
+  --values ${WORKING_DIR}/configs/charts_values/minio-values.yaml \
+  --set global.imageRegistry="docker.io${IMAGE_MIRROR_SUFFIX}" \
+  --wait \
+  --timeout 60m0s \
+  --version 11.10.7 \
+  bitnami/minio
+
+helm upgrade --install bitnami-clickhouse \
+  --namespace ${INFRA_NAMESPACE} \
+  --values ${WORKING_DIR}/configs/charts_values/clickhouse-values.yaml \
+  --set global.imageRegistry="docker.io${IMAGE_MIRROR_SUFFIX}" \
+  --wait \
+  --timeout 60m0s \
+  --version 1.0.0 \
+  bitnami/clickhouse

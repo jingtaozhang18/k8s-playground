@@ -1,15 +1,17 @@
 apiVersion: kafka.strimzi.io/v1beta2
 kind: KafkaConnector
 metadata:
-  name: debezium-source-connector-mysql
+  name: source-connector-mysql
   labels:
-    strimzi.io/cluster: debezium-source-connect-cluster
+    strimzi.io/cluster: source-connect-cluster
+  annotations:
+    strimzi.io/restart: "true"
 spec:
   class: io.debezium.connector.mysql.MySqlConnector
   tasksMax: 1
   config:
     tasks.max: 1
-    database.hostname: bitnami-mysql-primary.infra.svc.cluster.local
+    database.hostname: bitnami-mysql-secondary.infra.svc.cluster.local
     database.port: 3306
     database.user: root
     database.password: ${secrets:infra/bitnami-mysql:mysql-replication-password}

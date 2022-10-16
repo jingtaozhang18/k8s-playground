@@ -1,0 +1,33 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaConnector
+metadata:
+  name: sink-connector-s3
+  labels:
+    strimzi.io/cluster: sink-connect-cluster
+  annotations:
+    strimzi.io/restart: "true"
+spec:
+  class: io.confluent.connect.s3.S3SinkConnector
+  tasksMax: 2
+  config:
+    bootstrap.servers: bitnami-kafka.infra.svc.cluster.local:9092
+    topics: db_world_v2,schema-changes.db_world_v2,db_world_v2.db_world.debezium_signal,db_world_v2.db_world.person_infos,db_world_v2.db_world.persons
+    flush.size: 1000
+    s3.bucket.name: kafka-topics-sink
+    s3.part.size: 5242880
+    s3.region: us-east-1
+    store.url: http://bitnami-minio.infra.svc.cluster.local:9000
+    aws.access.key.id: QZmZFYL5aKqJF5zO
+    aws.secret.access.key: XXahIYjw5Qve2NabdEY2ZJuJSJpTHgTY
+    storage.class: io.confluent.connect.s3.storage.S3Storage
+    format.class: io.confluent.connect.s3.format.json.JsonFormat
+    key.converter: org.apache.kafka.connect.json.JsonConverter
+    key.converter.schemas.enable: false
+    # org.apache.kafka.connect.storage.StringConverter
+    value.converter: org.apache.kafka.connect.json.JsonConverter
+    value.converter.schemas.enable: false
+    schema.generator.class: io.confluent.connect.storage.hive.schema.DefaultSchemaGenerator
+    partitioner.class: io.confluent.connect.storage.partitioner.DefaultPartitioner
+    schema.compatibility: NONE
+    store.kafka.keys: false
+    behavior.on.null.values: ignore
