@@ -17,7 +17,9 @@ kubectl apply -f sink-connector-configuration-role-binding.yaml # RoleBinding
 kubectl apply -n infra -f sink-connect-cluster.yaml # KafkaConnect
 kubectl apply -n infra -f sink-connector-metrics.yaml
 kubectl apply -n infra -f sink-connector-mongodb.yaml # MongoDB Sink KafkaConnector running on KafkaConnect
-kubectl apply -n infra -f sink-connector-s3.yaml # S3 Sink KafkaConnector running on KafkaConnect
+kubectl exec gradiant-hdfs-namenode-0 -n infra -- hadoop fs -chmod 777 / # give hdfs2 permission
+kubectl apply -n infra -f sink-connector-hdfs2.yaml # HDFS2 Sink KafkaConnector running on KafkaConnect
+# kubectl apply -n infra -f sink-connector-s3.yaml # S3 Sink KafkaConnector running on KafkaConnect. there is a bug in it.
 ```
 
 ## Destroy Resource

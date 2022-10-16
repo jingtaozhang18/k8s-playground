@@ -4,12 +4,13 @@ metadata:
   name: sink-connector-s3
   labels:
     strimzi.io/cluster: sink-connect-cluster
+  annotations:
+    strimzi.io/restart: "true"
 spec:
   class: io.confluent.connect.s3.S3SinkConnector
   tasksMax: 2
   config:
     bootstrap.servers: bitnami-kafka.infra.svc.cluster.local:9092
-    tasks.max: 1
     topics: db_world_v2,schema-changes.db_world_v2,db_world_v2.db_world.debezium_signal,db_world_v2.db_world.person_infos,db_world_v2.db_world.persons
     flush.size: 1000
     s3.bucket.name: kafka-topics-sink

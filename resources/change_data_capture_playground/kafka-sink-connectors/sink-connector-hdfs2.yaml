@@ -1,0 +1,22 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaConnector
+metadata:
+  name: sink-connector-hdfs2
+  labels:
+    strimzi.io/cluster: sink-connect-cluster
+  annotations:
+    strimzi.io/restart: "true"
+spec:
+  class: io.confluent.connect.hdfs.HdfsSinkConnector
+  config:
+    bootstrap.servers: bitnami-kafka.infra.svc.cluster.local:9092
+    tasks.max: 1
+    topics: db_world_v2,schema-changes.db_world_v2,db_world_v2.db_world.debezium_signal,db_world_v2.db_world.person_infos,db_world_v2.db_world.persons
+    hdfs.url: hdfs://gradiant-hdfs-namenode.infra.svc.cluster.local:8020/topics-sink
+    flush.size: 5
+    partitioner.class: io.confluent.connect.storage.partitioner.DefaultPartitioner
+    key.converter: org.apache.kafka.connect.json.JsonConverter
+    key.converter.schemas.enable: false
+    value.converter: org.apache.kafka.connect.json.JsonConverter
+    value.converter.schemas.enable: false
+    format.class: io.confluent.connect.hdfs.json.JsonFormat
