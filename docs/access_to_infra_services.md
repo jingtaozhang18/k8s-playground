@@ -89,6 +89,7 @@ Dashboard list:
 * 13502 [MinIO Dashboard](https://grafana.com/grafana/dashboards/13502-minio-dashboard/)
   * select `bitnami-minio` for **scrape_jobs**
 * 14656 [Kafka Dashboard](https://grafana.com/grafana/dashboards/14656-kafka-dashboard/)
+  * waiting for there are consumers then dashboard is available.
 * 14192 [ClickHouse](https://grafana.com/grafana/dashboards/14192-clickhouse/)
 * 13332 [Kube State Metrics V2](https://grafana.com/grafana/dashboards/13332-kube-state-metrics-v2/)
 
