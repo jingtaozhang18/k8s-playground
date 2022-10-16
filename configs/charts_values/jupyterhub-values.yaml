@@ -1,0 +1,11 @@
+singleuser:
+  persistence:
+    enabled: true
+    storageClass: standard
+    size: 10Gi
+
+hub:
+  metrics:
+    serviceMonitor:
+      enabled: true
+      namespace: infra

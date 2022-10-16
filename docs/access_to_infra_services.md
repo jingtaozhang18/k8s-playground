@@ -259,3 +259,7 @@ Credentials:
 
 WEB UI: `http://bitnami-clickhouse.infra.svc.cluster.local:8123/play`
 For more please refer to [ClickHouse HTTP Interface](https://clickhouse.com/docs/en/interfaces/http/)
+
+## Jupyter Hub
+
+UI: `http://bitnami-jupyterhub-proxy-public.infra.svc.cluster.local/`
