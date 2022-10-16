@@ -26,7 +26,7 @@ fi
 
 helm repo add nfs-subdir-external-provisioner https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner
 helm repo add bitnami https://charts.bitnami.com/bitnami
-helm repo add jupyterhub https://jupyterhub.github.io/helm-chart/
+# helm repo add jupyterhub https://jupyterhub.github.io/helm-chart/
 helm repo update
 
 # get host ip
