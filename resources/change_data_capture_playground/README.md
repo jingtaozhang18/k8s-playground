@@ -19,5 +19,5 @@ Refer [sink-kafka2hdfs](./sink-kafka2hdfs) for sinking all existing data of all 
 * Initial MySQL Database: Run simulate-mysql-op/database_initial
 * Deploy Debezium Source Connector
 * Deploy MongoDB Sink Connector
-* Deploy S3 Sink Connector
+* Deploy HDFS2 Sink Connector
 * Concurrent Operation on MySQL: Run simulate-mysql-op/concurrency_op

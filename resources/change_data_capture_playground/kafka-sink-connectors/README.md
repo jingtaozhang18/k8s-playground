@@ -26,7 +26,8 @@ kubectl apply -n infra -f sink-connector-hdfs2.yaml # HDFS2 Sink KafkaConnector 
 
 ```bash
 kubectl delete -n infra KafkaConnector sink-connector-mongodb
-kubectl delete -n infra KafkaConnector sink-connector-s3
+kubectl delete -n infra KafkaConnector sink-connector-hdfs2
+# kubectl delete -n infra KafkaConnector sink-connector-s3
 kubectl delete -n infra KafkaConnect mongodb-sink-connect-cluster
 kubectl delete RoleBinding mongodb-sink-connector-configuration-role-binding
 kubectl delete Role mongodb-sink-connector-configuration-role
