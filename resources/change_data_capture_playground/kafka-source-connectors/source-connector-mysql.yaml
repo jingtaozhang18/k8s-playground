@@ -4,6 +4,8 @@ metadata:
   name: source-connector-mysql
   labels:
     strimzi.io/cluster: source-connect-cluster
+  annotations:
+    strimzi.io/restart: "true"
 spec:
   class: io.debezium.connector.mysql.MySqlConnector
   tasksMax: 1
