@@ -3,7 +3,7 @@
 ## Chown Directory
 
 ```bash
-kubectl exec gradiant-hdfs-namenode-0 -n infra -- hadoop fs -chmod 777 /
+kubectl exec gradiant-hdfs-namenode-0 -n infra --container namenode -- hadoop fs -chmod 777 /
 ```
 
 ## Submit Spark Job
