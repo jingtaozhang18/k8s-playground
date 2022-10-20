@@ -1,0 +1,26 @@
+hub:
+  service:
+    type: ClusterIP
+  deploymentStrategy:
+    type: Recreate
+  db:
+    type: sqlite-pvc
+    upgrade:
+    pvc:
+      accessModes:
+        - ReadWriteOnce
+      storage: 10Gi
+      storageClassName: standard
+
+singleuser:
+  image:
+    name: jupyter/all-spark-notebook
+    tag: python-3.10
+  # memory:
+  #   limit: 5G
+  #   guarantee: 2.5G
+  defaultUrl: "/lab"
+  storage:
+    type: dynamic
+    dynamic:
+      storageClass: standard

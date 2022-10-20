@@ -26,6 +26,7 @@ fi
 
 helm repo add nfs-subdir-external-provisioner https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner
 helm repo add bitnami https://charts.bitnami.com/bitnami
+helm repo add jupyterhub https://jupyterhub.github.io/helm-chart/
 helm repo update
 
 # get host ip
@@ -139,3 +140,11 @@ helm upgrade --install bitnami-clickhouse \
   --timeout 60m0s \
   --version 1.0.0 \
   bitnami/clickhouse
+
+helm upgrade --install jupyterhub-datascience-v2 \
+  --namespace ${INFRA_NAMESPACE} \
+  --values ${WORKING_DIR}/configs/charts_values/jupyterhub-values.yaml \
+  --set global.imageRegistry="docker.io${IMAGE_MIRROR_SUFFIX}" \
+  --timeout 60m0s \
+  --version 2.0.0 \
+  jupyterhub/jupyterhub

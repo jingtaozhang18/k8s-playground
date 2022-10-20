@@ -18,18 +18,6 @@ Proxy Tools:
 
 ## Promethus
 
-Watch the Prometheus Operator Deployment status using the command:
-
-```bash
-    kubectl get deploy -w --namespace infra -l app.kubernetes.io/name=kube-prometheus,app.kubernetes.io/instance=bitnami-kube-prometheus
-```
-
-Watch the Prometheus StatefulSet status using the command:
-
-```bash
-    kubectl get sts -w --namespace infra -l app.kubernetes.io/name=kube-prometheus,app.kubernetes.io/instance=bitnami-kube-prometheus
-```
-
 Prometheus can be accessed via port "9090" on the following DNS name from within your cluster:
 
 ```bash
@@ -259,3 +247,10 @@ Credentials:
 
 WEB UI: `http://bitnami-clickhouse.infra.svc.cluster.local:8123/play`
 For more please refer to [ClickHouse HTTP Interface](https://clickhouse.com/docs/en/interfaces/http/)
+
+## Jupyter Hub
+
+UI: `http://proxy-public.infra.svc.cluster.local/`
+
+User: user
+Leave password empty
